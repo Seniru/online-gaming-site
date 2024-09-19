@@ -1,0 +1,251 @@
+:root {
+	--background-color: #18122B;
+	--container-color: #2f2c39;
+	--primary-color: #c51098;
+	--border-color: #c51098;
+	--hover-color: #9f0d7b;
+	--active-color: #8c0c6d;
+	--text-color: white;
+	--secondary-text-color: #a3a2a2;
+	--input-color: #404040;
+}
+
+body {
+	margin: 0;
+	font-family: "Open Sans", sans-serif;
+	background-color: var(--background-color);
+	font-size: 14px;
+	color: var(--text-color);
+}
+
+header {
+	background-color: var(--container-color);
+	display: flex;
+	justify-content: space-between;
+	position: sticky;
+	top: 0px;
+	left: 0px;
+	z-index: 999;
+    box-shadow: 0px 0px 8px 1px #000000;
+}
+
+header > .logo-image {
+	width: 100px;
+}
+
+header > nav {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+header > nav > input[type=search] {
+	width: 400px;
+    margin-left: 30px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+header > nav > ul {
+	list-style-type: none;
+	display: inline-block;
+}
+
+header > nav > ul > li {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+header > nav > ul > li > a,
+header > nav > ul > li > a:visited,
+header > nav > button {
+	color: var(--text-color);
+	font-weight: bold;
+	font-size: 16px;
+}
+
+header #profile-actions {
+	display: flex;
+	align-items: center;
+}
+
+#profile-actions > div {
+	display: flex;
+	align-items: center;
+}
+
+#profile-actions .profile-image {
+	margin-left: 5px;
+	background-color: white;
+}
+
+#profile-actions > div > button {
+	background-color: transparent;
+	color: white;
+}
+
+a, a:visited {
+	color: var(--primary-color);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--hover-color);
+	text-decoration: underline;
+}
+
+a:active {
+	color: var(--active-color);
+	text-decoration: underline;
+}
+
+
+button,
+input[type=submit] {
+	background-color: var(--primary-color);
+	padding: 6px;
+    border-radius: 4px;
+	border: 0;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+	transition-duration: .4s;
+}
+
+button:hover,
+input[type=submit]:hover {
+	background-color: var(--hover-color);
+}
+
+button:active,
+input[type=submit]:active {
+	background-color: var(--active-color);
+}
+
+
+input:not([type=submit], [type=range], [type=search]) {
+	background-color: var(--input-color);
+	color: var(--text-color);
+	border-radius: 3px;
+	border: 0;
+	padding: 8px;
+	outline: none;
+	border-bottom: 2px solid #00000000;
+	font-family: "Poppins", sans-serif;
+	font-weight: 300;
+	font-style: normal;
+	box-shadow: 0px 0px 6px 1px #00000038;
+	transition-duration: .4s;
+}
+
+input:not([type=submit], [type=range], [type=search]):focus {
+	border-bottom: 2px solid var(--primary-color);
+}
+
+input[type=radio], input[type=checkbox] {
+	width: 15px;
+	height: 15px;
+	vertical-align: middle;
+}
+
+
+input[type=search] {
+	background-color: var(--input-color);
+	color: var(--text-color);
+	outline: none;
+	border: none;
+	border-radius: 11px;
+	font-family: "Poppins", sans-serif;
+  	font-weight: 300;
+  	font-style: normal;
+	padding: 6px 10px 6px 20px;
+	background-image: url("../images/magnifying-glass-solid.svg");
+	background-repeat: no-repeat;
+	background-position: 95% center;
+	box-shadow: 0px 0px 6px 1px #00000038;
+}
+
+input[type=search]:active {
+	outline: none;
+	appearance: none;
+
+}
+
+input[type=search]::placeholder {
+	color: #606060;
+}
+  
+input[type=search]::-ms-input-placeholder {
+	color: #606060;
+}
+
+/* Remove X icon credits: https://medium.com/@rion.mrk/how-to-remove-x-icon-from-search-input-field-or-input-type-search-db3c808405fb */
+/* clears the ‘X’ from Internet Explorer */
+input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+select {
+	background-color: var(--input-color);
+	color: var(--text-color);
+	border-radius: 11px;
+	padding: 6px 60px 6px 20px;
+	font-family: "Poppins", sans-serif;
+  	font-weight: 300;
+  	font-style: normal;
+	outline: none;
+	appearance: none;
+	background-image: url("../images/angle-down-solid.svg");
+	background-repeat: no-repeat;
+	background-position: 95% center;
+	transition-duration: 0.4s;
+	transition-timing-function: ease-in-out;
+}
+
+select:active {
+	background-image: url("../images/angle-up-solid.svg");
+}
+
+
+.secondary-info {
+	color: var(--secondary-text-color);
+}
+
+.container {
+	background: var(--container-color);
+	padding: 10px 15px;
+    margin: 5px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 6px 1px #00000038;
+}
+
+.chip {
+	padding: 1px;
+    padding-left: 10px;
+	margin: 2px 1px;
+    display: inline-flex;
+    border-radius: 50px;
+    align-items: center;
+    background-color: var(--input-color);
+}
+
+.chip > .name-container {
+	margin: 8px;
+}
+
+.profile-image {
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	border: 1px solid black;
+	padding: 3px;
+}
+
+.wrapper {
+	margin: 15px;
+}
