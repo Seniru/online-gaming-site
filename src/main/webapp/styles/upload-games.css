@@ -1,0 +1,11 @@
+fieldset {
+	border: none;
+}
+
+fieldset:first-child {
+	border-bottom: 1px solid black;
+}
+
+label {
+	margin-right: 10px;
+}
