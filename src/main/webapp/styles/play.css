@@ -1,0 +1,32 @@
+#gamebox {
+    width: 860px;
+    height:400px ;
+    background-color: gray;
+}
+
+#title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#star{
+    display: flex;
+    align-items: center;
+
+}
+#heart{
+    margin-left: 12px;
+}
+.comment{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.comment > p {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+#user{
+    margin-right: 5px
+}
