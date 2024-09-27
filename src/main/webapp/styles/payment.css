@@ -1,0 +1,99 @@
+
+
+
+@charset "UTF-8";
+ 
+            .container {
+                width: 48%;
+                position: relative;
+                left: 24.5%;
+            }
+
+            #cdNO {
+                background-image: url("../images/credit-card-solid (4).svg");
+                background-repeat: no-repeat;
+                background-position: 95% center;
+            }
+
+            #bank_confirm {
+
+
+                text-align: center;
+                position: absolute;
+                cursor: pointer;
+                transition: 0.5s;
+                border-radius: 6px;
+                margin-left: 407px;
+
+            }
+
+            .fa-brands {
+                font-size: 50px;
+                text-align: unset;
+                left: 33%;
+                position: relative;
+            }
+
+            form {
+
+
+                width: 50%;
+                height: 80vh;
+                left: 25%;
+                position: relative;
+            }
+
+            h1 {
+                text-align: center;
+                color: white;
+            }
+
+            h2 {
+                text-align: center;
+                color: black;
+            }
+
+            h3 {
+                text-align: unset;
+                left: 20%;
+                position: relative;
+            }
+
+            input[type=text] {
+                width: 388px;
+                margin-left: 145px;
+            }
+
+            body {
+                
+                background-size: cover;
+
+            }
+
+            #terms {
+
+                margin-left: 145px;
+
+            }
+
+            /*https://stackoverflow.com/questions/17541614/use-images-instead-of-radio-buttons*/
+            /* HIDE RADIO */
+            [type=radio] { 
+                position: absolute;
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            /* IMAGE STYLES */
+            [type=radio] + i {
+                cursor: pointer;
+            }
+
+            /* CHECKED STYLES */
+            [type=radio]:checked + i {
+                color: white;
+            }
+
+        
+   

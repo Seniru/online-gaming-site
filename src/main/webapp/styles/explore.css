@@ -1,0 +1,58 @@
+
+
+@charset "UTF-8";
+
+#game-search
+{
+	width: 75%;
+    height: 40px;
+}
+
+.game img
+{
+	height: 120px;
+	width: 120px;
+}
+
+.game {
+	display: inline-grid;
+    justify-items: center;
+    padding: 4px;
+    align-content: stretch;
+	
+}
+
+aside {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    margin: 0px !important;
+    border-radius: 0px !important;
+}
+
+aside > ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+aside > ul > li {
+    list-style-type: none;
+}
+
+aside > ul > li > a > .chip {
+    color: white;
+    width: 90%;
+}
+
+.wrapper {
+    margin-left: 250px;
+}
+
+#Gobutton{
+    color: var(--text-color);
+    padding: 8px;
+}
