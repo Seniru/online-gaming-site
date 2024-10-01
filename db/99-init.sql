@@ -1,4 +1,4 @@
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+--ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
 
 -- Insert records into User table
 INSERT INTO `User` (`Username`, `Email`, `Password`) VALUES

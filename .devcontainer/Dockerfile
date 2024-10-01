@@ -8,6 +8,9 @@ RUN apt-get update && \
     curl \
     git \
     sudo \
+    gnupg \
+    lsb-release \
+    wget \
     && rm -rf /var/lib/apt/lists/*
 
 # Install OpenJDK 11
@@ -35,6 +38,15 @@ RUN cp -r /usr/share/tomcat9/conf /var/lib/tomcat9/ && \
     mv /usr/share/tomcat9/work /var/lib/tomcat9/ && \
     cp -r /usr/share/tomcat9/bin /var/lib/tomcat9
 
+# Install mysql
+RUN apt-get update && \
+    apt-get install -y mariadb-server mariadb-client
+# Clean up
+RUN rm -rf mysql-apt-config_0.8.22-1_all.deb mysql-8.0.30-1ubuntu20.04_amd64.deb-bundle.tar
+
+# Initialize database
+RUN service mariadb start
+#RUN mysql -u root -p -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '';"
 
 # Set environment variables
 ENV CATALINA_HOME=/var/lib/tomcat9

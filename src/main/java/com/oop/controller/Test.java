@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -7,9 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 
+
 @WebServlet("/Test")
 public class Test extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private static HashMap<String, String> env = Environment.load();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -24,7 +27,7 @@ public class Test extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
 
             // Establish a connection to the database
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/online_gaming", "root", "root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + env.get("DB_NAME"), env.get("DB_USER"), env.get("DB_PASSWORD"));
 
             // Create a statement
             stmt = conn.createStatement();
@@ -59,5 +62,6 @@ public class Test extends HttpServlet {
                 e.printStackTrace(out);
             }
         }
+        
     }
 }
