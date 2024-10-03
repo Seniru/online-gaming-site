@@ -8,15 +8,15 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">		<link rel="stylesheet" href="../styles/components.css">
-		<link rel="stylesheet" href="../styles/components.css">
-		<link rel="stylesheet" href="../styles/signup.css">
+		<link rel="stylesheet" href="styles/components.css">
+		<link rel="stylesheet" href="styles/signup.css">
 		<!--font awesome-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
 		<title>Sign up</title>
 	</head>
 	<body class="wrapper">
 		<a href="./">&lt; Go back</a>
-		<form id="signup-form" class="container" method="POST" action=""">
+		<form id="signup-form" class="container" method="POST" action="">
 			<h1>Create an account...</h1>
 			<div id="signup-options">
 				<div id="signup-email-container">

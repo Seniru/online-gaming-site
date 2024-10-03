@@ -1,3 +1,5 @@
+package com.oop.controller;
+
 import java.util.HashMap;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,6 +25,8 @@ public class Test extends HttpServlet {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
+
+        out.println(request.getSession().getAttribute("user"));
 
         try {
             // Load the JDBC driver
