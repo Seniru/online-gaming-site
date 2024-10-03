@@ -8,20 +8,6 @@
     height: 40px;
 }
 
-.game img
-{
-	height: 120px;
-	width: 120px;
-}
-
-.game {
-	display: inline-grid;
-    justify-items: center;
-    padding: 4px;
-    align-content: stretch;
-	
-}
-
 aside {
     margin: 0;
     padding: 0;

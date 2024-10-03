@@ -249,3 +249,17 @@ select:active {
 .wrapper {
 	margin: 15px;
 }
+
+.game img
+{
+	height: 120px;
+	width: 120px;
+}
+
+.game {
+	display: inline-grid;
+    justify-items: center;
+    padding: 4px;
+    align-content: stretch;
+	
+}
