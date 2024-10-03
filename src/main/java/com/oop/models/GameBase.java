@@ -1,48 +1,62 @@
 package com.oop.models;
 
-public class GameBase {
-	    
-		int Title;
-	    int description;
-	    String image;
-	    String URl;
+import java.util.ArrayList;
 
+public abstract class GameBase implements Persistable, Printable {
 	    
-	   
-	    public GameBase(int title, int description, String image, String uRl) {
-			super();
-			Title = title;
-			this.description = description;
-			this.image = image;
-			URl = uRl;
-			
-		}
-		int getTitle() {
-			return Title;
-		}
-		public void setTitle(int title) {
-			Title = title;
-		}
-		public int getDescription() {
-			return description;
-		}
-		public void setDescription(int description) {
-			this.description = description;
-		}
-		public String getImage() {
-			return image;
-		}
-		public void setImage(String image) {
-			this.image = image;
-		}
-		public String getURl() {
-			return URl;
-		}
-		public void setURl(String uRl) {
-			URl = uRl;
-		}
-	    
+	private int title;
+	private int description;
+	private String image;
+	private String url;
+	private ArrayList<Category> categories;
+
+	public GameBase(int title, int description, String image, String url, ArrayList<Category> categories) {
+		this.title = title;
+		this.description = description;
+		this.image = image;
+		this.url = url;
+		this.categories = categories;
 	}
 
+	int getTitle() {
+		return title;
+	}
+
+	public void setTitle(int title) {
+		this.title = title;
+	}
+
+	public int getDescription() {
+		return description;
+	}
+	
+	public void setDescription(int description) {
+		this.description = description;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setURl(String url) {
+		this.url = url;
+	}
+
+	public ArrayList<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(ArrayList<Category> categories) {
+		this.categories = categories;
+	}
+	    
 }
 

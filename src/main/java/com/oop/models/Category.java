@@ -1,39 +1,55 @@
 package com.oop.models;
 
-public class Category {
+public class Category implements Persistable, Printable {
 	
-	    String Cname;
-	    String Icon;
-	    String Color;
+	private String cname;
+	private String icon;
+	private String color;
 
-	public Ticketw(String cname, String icon, String color) {
-		super();
-		Cname = cname;
-		Icon = icon;
-		Color = color;
+	public Category(String cname, String icon, String color) {
+		this.cname = cname;
+		this.icon = icon;
+		this.color = color;
 	}
 
 	public String getCname() {
-		return Cname;
+		return this.cname;
 	}
 	public void setCname(String cname) {
-		Cname = cname;
+		this.cname = cname;
 	}
 
 	public String getIcon() {
-		return Icon;
+		return this.icon;
 	}
 
 	public void setIcon(String icon) {
-		Icon = icon;
+		this.icon = icon;
 	}
 	public String getColor() {
-		return Color;
+		return this.color;
 	}
 
 	public void setColor(String color) {
-		Color = color;
+		this.color = color;
+	}
+
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'print'");
+	}
+
+	@Override
+	public void load(String identifier) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'load'");
+	}
+
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'save'");
 	}
     
-}
 }

@@ -1,70 +1,69 @@
 package com.oop.models;
 
-public class Ticket {
+public class Ticket implements Persistable, Printable {
 		    
-		int TicketID;
-	    String Title;
-	    String Body;
-	    String Username;
-
-
-
-        public class Ticketw {
+		private int ticketID;
+	    private String title;
+	    private String body;
+	    private RegisteredUser user;
+        
+		public Ticket(int ticketID, String title, String body, RegisteredUser user) {
+			this.ticketID = ticketID;
+			this.title = title;
+			this.body = body;
+			this.user = user;
+		}
 	    
-		int TicketID;
-	    String Title;
-	    String Body;
-	    String Username;
-	    
-	    
-	  
 		public int getTicketID() {
-			return TicketID;
+			return ticketID;
 		}
 		
 		public void setTicketID(int ticketID) {
-			TicketID = ticketID;
+			this.ticketID = ticketID;
 		}
 
-
 		public String getTitle() {
-			return Title;
+			return this.title;
 		}
 
 		public void setTitle(String title) {
-			Title = title;
+			this.title = title;
 		}
 
 
 		public String getBody() {
-			return Body;
+			return body;
 		}
 
 
 		public void setBody(String body) {
-			Body = body;
+			this.body = body;
 		}
 
-
-		public String getUsername() {
-			return Username;
+		public RegisteredUser getUser() {
+			return user;
 		}
 
-		public void setUsername(String username) {
-			Username = username;
+		public void setUsername(RegisteredUser user) {
+			this.user = user;
 		}
 
-
-		public Ticketw(int ticketID, String title, String body, String username) {
-			super();
-			TicketID = ticketID;
-			Title = title;
-			Body = body;
-			Username = username;
+		@Override
+		public void print() {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'print'");
 		}
-	    
-	    
-}
 
+		@Override
+		public void load(String identifier) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'load'");
+		}
 
+		@Override
+		public void save() {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'save'");
+		}
+	
 }

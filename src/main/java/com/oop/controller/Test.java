@@ -6,13 +6,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.oop.models.RegisteredUser;
+
 import java.sql.*;
 
 
 @WebServlet("/Test")
 public class Test extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static HashMap<String, String> env = Environment.load();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -27,7 +29,7 @@ public class Test extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
 
             // Establish a connection to the database
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + env.get("DB_NAME"), env.get("DB_USER"), env.get("DB_PASSWORD"));
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/online_gaming", "root", "");
 
             // Create a statement
             stmt = conn.createStatement();
@@ -35,6 +37,7 @@ public class Test extends HttpServlet {
             // Execute a query to retrieve data from the User table
             String sql = "SELECT Username, Email, Password FROM User";
             rs = stmt.executeQuery(sql);
+
 
             // Print the results
             out.println("<html><body>");
@@ -49,6 +52,8 @@ public class Test extends HttpServlet {
             }
 
             out.println("</table>");
+			RegisteredUser u = RegisteredUser.fromUsername("john_doe");
+			out.println(u);
             out.println("</body></html>");
         } catch (Exception e) {
             e.printStackTrace(out);

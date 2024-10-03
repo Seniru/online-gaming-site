@@ -6,6 +6,7 @@ build: clean
 	mkdir -p build/WEB-INF/lib
 	javac -cp $(TOMCAT_LIB_PATH):$(JDBC_JAR_PATH) -d build/WEB-INF/classes src/main/java/com/oop/*/*.java
 	cp -r src/main/webapp/* build/
+	cp .env build/
 	cp $(JDBC_JAR_PATH) build/WEB-INF/lib/
 	cd build && jar -cvf ../online-gaming.war *
 	cd ..
