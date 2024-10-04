@@ -8,7 +8,7 @@ public class Game extends GameBase {
 	}
 
 	@Override
-	public void load(String identifier) {
+	public void load() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'load'");
 	}

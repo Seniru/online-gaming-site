@@ -9,7 +9,7 @@ public class Comment implements Persistable, Printable {
 	}
 
 	@Override
-	public void load(String identifier) {
+	public void load() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'load'");
 	}
