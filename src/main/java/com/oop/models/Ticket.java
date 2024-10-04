@@ -2,7 +2,7 @@ package com.oop.models;
 
 import java.sql.*;
 
-
+import com.oop.utils.DBConn;
 
 public class Ticket implements Persistable, Printable {
 		    
@@ -34,7 +34,6 @@ public class Ticket implements Persistable, Printable {
 			this.title = title;
 		}
 
-
 		public String getBody() {
 			return body;
 		}
@@ -59,7 +58,7 @@ public class Ticket implements Persistable, Printable {
 		}
 
 		@Override
-		public void load(String identifier) {
+		public void load() {
 			// TODO Auto-generated method stub
 			throw new UnsupportedOperationException("Unimplemented method 'load'");
 		}
@@ -68,14 +67,14 @@ public class Ticket implements Persistable, Printable {
 		public void save() {
 			try{
 				Connection conn = DBConn.getConnection();
-				PreparedStatement stmt = conn.PreparedStatement("REPLACE INTO Ticket(username, title, body) VALUES (?,?,?)");
-				stmt.setString(1, this.username);
-				stmt.setString(2, this.title);
-				stmt.setString(3, this.body);
+				PreparedStatement stmt = conn.prepareStatement("REPLACE INTO Ticket(Title, Body, Username) VALUES (?,?,?)");
+				stmt.setString(1, this.title);
+				stmt.setString(2, this.body);
+				stmt.setString(3, this.user.getUsername());
 				stmt.executeUpdate();
 			}catch (SQLException e){
 				System.out.println(e);
 			}		
-			}
+		}
 	
 }

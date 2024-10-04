@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.oop.models.Ticket;
+import com.oop.models.RegisteredUser;
 
 @WebServlet("/Ticket")
 public class TicketController extends HttpServlet {
@@ -29,13 +30,13 @@ public class TicketController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
 
-                Ticket newTicket = new Ticket(
-                    request.getParameter("Title"),
-                    request.getParameter("Body"),
-                    request.getParameter("Username")
-                    
+        Ticket newTicket = new Ticket(
+            0,
+            request.getParameter("Title"),
+            request.getParameter("Body"),
+            (RegisteredUser) request.getSession().getAttribute("user")
+        );
 
-                );
         newTicket.save();
 		response.setContentType("text/html");
         PrintWriter out = response.getWriter();

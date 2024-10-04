@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public abstract class GameBase implements Persistable, Printable {
 	    
-	private int title;
-	private int description;
-	private String image;
-	private String url;
-	private ArrayList<Category> categories;
+	protected String title;
+	protected String description;
+	protected String image;
+	protected String url;
+	protected ArrayList<Category> categories;
 
-	public GameBase(int title, int description, String image, String url, ArrayList<Category> categories) {
+	public GameBase(String title, String description, String image, String url, ArrayList<Category> categories) {
 		this.title = title;
 		this.description = description;
 		this.image = image;
@@ -18,19 +18,19 @@ public abstract class GameBase implements Persistable, Printable {
 		this.categories = categories;
 	}
 
-	int getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(int title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public int getDescription() {
+	public String getDescription() {
 		return description;
 	}
 	
-	public void setDescription(int description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 	

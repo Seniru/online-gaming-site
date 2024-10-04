@@ -1,5 +1,6 @@
 package com.oop.controller;
 
+import java.util.ArrayList;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
+import com.oop.models.Game;
+import com.oop.models.Category;
 
 @WebServlet("/upload")
 public class CreateGame extends HttpServlet {
@@ -32,15 +35,15 @@ public class CreateGame extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
 
-                Game newgame= new Game(
-                    request.getParameter("title"),
-                    request.getParameter("description"),
-                    request.getParameter("image"),
-                    request.getParameter("url"),
-                )
-
-		game.save();
-
+        Game newGame = new Game(
+            request.getParameter("title"),
+            request.getParameter("description"),
+            request.getParameter("image"),
+            request.getParameter("url"),
+            new ArrayList<Category>()
+        );
+		newGame.save();
 
 	}
+
 }

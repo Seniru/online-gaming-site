@@ -3,7 +3,7 @@ package com.oop.models;
 import java.util.ArrayList;
 public class ProGame extends GameBase {
 
-	public ProGame(int title, int description, String image, String url, ArrayList<Category> categories) {
+	public ProGame(String title, String description, String image, String url, ArrayList<Category> categories) {
 		super(title, description, image, url, categories);
 	}
 
