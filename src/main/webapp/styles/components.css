@@ -79,9 +79,16 @@ header #profile-actions {
 	background-color: white;
 }
 
-#profile-actions > div > button {
+#profile-dropdown {
 	background-color: transparent;
 	color: white;
+}
+
+#profile-actions #profile-name {
+	display: flex;
+    align-items: center;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 a, a:visited {

@@ -29,4 +29,9 @@ public abstract class BaseUser implements Persistable {
 		return this.profilePicture;
 	}
 
+	@Override
+	public String toString() {
+		return "User " + this.getUsername();
+	}
+
 }

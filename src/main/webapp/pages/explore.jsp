@@ -12,9 +12,9 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="../styles/components.css">
-<link rel="stylesheet" href="../styles/components.css">
-<link rel="stylesheet" href="../styles/explore.css">
+<link rel="stylesheet" href="styles/components.css">
+<link rel="stylesheet" href="styles/components.css">
+<link rel="stylesheet" href="styles/explore.css">
 
 <!--font awesome-->
 <script src="https://kit.fontawesome.com/36fdbb8e6c.js"
