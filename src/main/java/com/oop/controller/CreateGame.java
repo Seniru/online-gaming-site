@@ -9,42 +9,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
-import com.oop.models.RegisteredUser;
 
-
-@WebServlet("/signup")
-public class Signup extends HttpServlet {
+@WebServlet("/upload")
+public class CreateGame extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public Signup() {
+    public CreateGame() {
         super();
     }
 
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        		response.setContentType("text/html");
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/signup.jsp");
+                
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/upload-games.jsp");
 		dispatcher.forward(request, response);
+		
         
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
 
-		RegisteredUser newUser = new RegisteredUser(
-			request.getParameter("username"),
-			request.getParameter("password"),
-			request.getParameter("email"),
-			"",
-			false,
-			false
-		);
+                Game newgame= new Game(
+                    request.getParameter("title"),
+                    request.getParameter("description"),
+                    request.getParameter("image"),
+                    request.getParameter("url"),
+                )
 
-		request.getSession().setAttribute("user", newUser);
+		game.save();
 
-		//newUser.save();
-		response.sendRedirect("explore");
 
 	}
 }

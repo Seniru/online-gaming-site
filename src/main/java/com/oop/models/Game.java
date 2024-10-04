@@ -11,6 +11,16 @@ public class Game extends GameBase {
 	public void load(String identifier) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'load'");
+		Connection conn = DBConn.getConnection();
+		PreparedStatement stmt=cnn.PreparedStatement("Replace into user(title, description, image, url, categories)VALUES(?,?,?)");
+		stmt.setString(1,this.title);
+		stmt.setString(2,this.description);
+		stmt.setString(3,this.image);
+		stmt.setString(4,this.url);
+		stmt.setString(5,this.categories);
+		stmt.executeUpdate();
+	}catch(SQLException a){
+		System.out.println(a);
 	}
 
 	@Override

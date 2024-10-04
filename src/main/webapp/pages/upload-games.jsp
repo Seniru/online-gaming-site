@@ -8,9 +8,9 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">		<link rel="stylesheet" href="../styles/components.css">
-		<link rel="stylesheet" href="../styles/components.css">
-		<link rel="stylesheet" href="../styles/upload-games.css">
-		<script src="../scripts/upload-games.js"></script>
+		<link rel="stylesheet" href="styles/components.css">
+		<link rel="stylesheet" href="styles/upload-games.css">
+		<script src="scripts/upload-games.js"></script>
 		<!--font awesome-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
 		<title>Components</title>
@@ -48,7 +48,7 @@
 					</label>
 					<br><br>
 					Cover image
-					<input type="file">
+					<input name="file"type="file">
 					<br><br>
 					Preview
 					<div id="image-preview">
@@ -63,7 +63,7 @@
 					</select>
 					<br><br>
 					<div id="upload-method">
-						<input type="text" placeholder="Enter link">
+						<input name="link"type="text" placeholder="Enter link">
 					</div>
 				</fieldset>
 				<input type="submit" name="submit" value="Submit">
