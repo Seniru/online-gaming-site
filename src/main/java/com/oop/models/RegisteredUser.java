@@ -18,7 +18,9 @@ public class RegisteredUser extends BaseUser {
 	public static RegisteredUser fromUsername(String username) {
 		try {
 			Connection conn = DBConn.getConnection();
-			ResultSet res = conn.createStatement().executeQuery("SELECT * FROM `User` WHERE `Username` = 'john_doe'");
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE username = ?");
+			stmt.setString(1, username);
+			ResultSet res = stmt.executeQuery();
 			return new RegisteredUser(
 				res.getString("Username"),
 				res.getString("Password"),
@@ -28,20 +30,40 @@ public class RegisteredUser extends BaseUser {
 				false
 			);
 		} catch (SQLException e) {
-			return new RegisteredUser(e.getMessage(), "sex", "sex", "sex", false, false);
+			return null;
 		}
 	}
 
 	@Override
-	public void load(String identifier) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'load'");
+	public void load() {
+		try {
+			Connection conn = DBConn.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE username = ?");
+			stmt.setString(1, username);
+			ResultSet res = stmt.executeQuery();
+			this.username = res.getString("Username");
+			this.password = res.getString("Password");
+			this.email = res.getString("Email");
+			this.profilePicture = res.getString("ProfilePicture");
+			this.isPro = false;
+			this.isDev = false;
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
 	}
 
 	@Override
 	public void save() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'save'");
+		try {
+			Connection conn = DBConn.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("REPLACE INTO User (Username, Email, Password) VALUES (?, ?, ?)");
+			stmt.setString(1, this.username);
+			stmt.setString(2, this.email);
+			stmt.setString(3, this.password);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
 	}
 	
 }
