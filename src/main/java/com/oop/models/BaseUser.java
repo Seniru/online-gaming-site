@@ -1,10 +1,10 @@
 package com.oop.models;
 
 public abstract class BaseUser implements Persistable {
-	private String username;
-	private String password;
-	private String email;
-	private String profilePicture;
+	protected String username;
+	protected String password;
+	protected String email;
+	protected String profilePicture;
 
 	public BaseUser(String username, String password, String email, String profilePicture) {
 		this.username = username;

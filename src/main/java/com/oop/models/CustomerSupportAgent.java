@@ -11,7 +11,7 @@ public class CustomerSupportAgent extends BaseUser {
 	}
 
 	@Override
-	public void load(String identifier) {
+	public void load() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'load'");
 	}
