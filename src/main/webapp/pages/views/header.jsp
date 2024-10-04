@@ -15,7 +15,7 @@
 			RegisteredUser user = (RegisteredUser) session.getAttribute("user");
 			if (user != null) {
 		%>
-		<button>Logout</button>
+		<a href='logout'><button>Logout</button></a>
 		<div>
 			<img class='profile-image' src='images/user-solid.svg'>
 			<div id="profile-name">
@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		<% } else { %>
-		<button>Login</button>
+		<a href='login'><button>Login</button></a>
 		<% } %>
 	</div>
 </header>

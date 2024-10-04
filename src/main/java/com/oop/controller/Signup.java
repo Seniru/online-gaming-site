@@ -23,7 +23,6 @@ public class Signup extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        		response.setContentType("text/html");
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/signup.jsp");
 		dispatcher.forward(request, response);

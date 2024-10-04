@@ -18,18 +18,24 @@ public class RegisteredUser extends BaseUser {
 	public static RegisteredUser fromUsername(String username) {
 		try {
 			Connection conn = DBConn.getConnection();
-			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE username = ?");
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE Username = ?");
 			stmt.setString(1, username);
 			ResultSet res = stmt.executeQuery();
-			return new RegisteredUser(
-				res.getString("Username"),
-				res.getString("Password"),
-				res.getString("Email"),
-				res.getString("ProfilePicture"),
-				false,
-				false
-			);
+
+			if (res.next()) {
+				return new RegisteredUser(
+					res.getString("Username"),
+					res.getString("Password"),
+					res.getString("Email"),
+					"",
+					false,
+					false
+				);
+			}
+
+			return null;
 		} catch (SQLException e) {
+			System.out.println(e);
 			return null;
 		}
 	}
