@@ -1,5 +1,9 @@
 package com.oop.models;
 
+import java.sql.*;
+
+
+
 public class Ticket implements Persistable, Printable {
 		    
 		private int ticketID;
@@ -62,8 +66,16 @@ public class Ticket implements Persistable, Printable {
 
 		@Override
 		public void save() {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'save'");
-		}
+			try{
+				Connection conn = DBConn.getConnection();
+				PreparedStatement stmt = conn.PreparedStatement("REPLACE INTO Ticket(username, title, body) VALUES (?,?,?)");
+				stmt.setString(1, this.username);
+				stmt.setString(2, this.title);
+				stmt.setString(3, this.body);
+				stmt.executeUpdate();
+			}catch (SQLException e){
+				System.out.println(e);
+			}		
+			}
 	
 }

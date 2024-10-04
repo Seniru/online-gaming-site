@@ -19,26 +19,15 @@
         <div class="container">
             <h1>Customer Support Page</h1>
             <form method="POST" action="">
-            	<label for="name">Name:</label><br>
+            	<label for="Username">Name:</label><br>
             	<input type="text" id="name" Name="name" placeholder="Enter your name"><br><br>
-            	<label for="Email">Email:</label><br>
-            	<input type="text" id="Email" name="Email" placeholder="Enter your Email"><br><br>
-            	<label for="Contact Number">Contact Number:</label><br>
-            	<input type="text" id="ContactNumber" name="ContactNumber"placeholder="Enter your contact number"><br><br>
-            	<label for="Request/Inquiry Type">Request/Inquiry Type:</label><br>
-            	<select name="type">
-            	    <option value="inquiries">Inquiries</option>
-            	    <option value="complaints">Complaints</option>
-            	</select>
             	<br><br>
-            	<label for="Subject">Subject:</label><br>
+            	<label for="Title">Title:</label><br>
             	<input type="text" id="Subject" name="Subject"placeholder="Type here" required><br><br>
-            	<label for="Message">Message:</label><br>
+            	<label for="Body">Body:</label><br>
             	<textarea id="content" name="content" rows="8" cols="80"placeholder="Type here" required></textarea><br><br>
             	<input type="submit" value="Submit" name="submit">
         	</form>
         </div>
-
-
 	</body>
 </html>

@@ -7,44 +7,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
 
-import com.oop.models.RegisteredUser;
+import com.oop.models.Ticket;
 
-
-@WebServlet("/signup")
-public class Signup extends HttpServlet {
+@WebServlet("/Ticket")
+public class TicketController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public Signup() {
+    public TicketController() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        		response.setContentType("text/html");
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/signup.jsp");
-		dispatcher.forward(request, response);
+        
+		response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
         
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
 
-		RegisteredUser newUser = new RegisteredUser(
-			request.getParameter("username"),
-			request.getParameter("password"),
-			request.getParameter("email"),
-			"",
-			false,
-			false
-		);
+                Ticket newTicket = new Ticket(
+                    request.getParameter("Title"),
+                    request.getParameter("Body"),
+                    request.getParameter("Username")
+                    
 
-		request.getSession().setAttribute("user", newUser);
-
-		//newUser.save();
-		response.sendRedirect("explore");
+                );
+        newTicket.save();
+		response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
 
 	}
 }
