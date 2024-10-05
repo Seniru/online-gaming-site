@@ -50,6 +50,10 @@ elif [ $1 = "init-db" ]; then
 	init_db
 elif [ $1 = "drop-db" ]; then
 	sudo mysql -u $DB_USER -p$DB_PASSWORD -h $DB_HOST -e "DROP DATABASE IF EXISTS ${DB_NAME};"
+elif [ $1 = "backup-db" ]; then
+	sudo mysqldump -u $DB_USER -p$DB_PASSWORD $DB_NAME > backup.sql
+elif [ $1 = "apply-rev" ]; then
+	sudo mysql -u $DB_USER -p $DB_PASSWORD -h $DB_HOST $DB_NAME < $2
 fi
 
 

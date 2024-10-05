@@ -1,8 +1,8 @@
 CREATE TABLE `Game` (
-    `Gtitle` VARCHAR(10) PRIMARY KEY ,
+    `Gtitle` VARCHAR(30) PRIMARY KEY ,
     `Image` VARCHAR(100),
     `URL` VARCHAR(200),
-    `Description` VARCHAR(100)
+    `Description` VARCHAR(1024)
 );
 
 CREATE TABLE `Comment` (
@@ -13,7 +13,7 @@ CREATE TABLE `Comment` (
 );
 
 CREATE TABLE  `Category` (
-    `Cname` VARCHAR (10) PRIMARY KEY,
+    `Cname` VARCHAR (20) PRIMARY KEY,
     `Icon` VARCHAR (100),
     `Color` VARCHAR (20)
 );

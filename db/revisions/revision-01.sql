@@ -1,0 +1,54 @@
+ALTER TABLE Category
+MODIFY Cname VARCHAR(20);
+
+ALTER TABLE Game
+MODIFY Gtitle VARCHAR(30);
+ALTER TABLE Game
+MODIFY Description VARCHAR(1024);
+
+INSERT INTO Category (Cname, Icon, Color) VALUES
+('Action', 'fa-solid fa-gamepad', '#4CAF50'),
+('Puzzle', 'fa-solid fa-puzzle-piece', '#FF5722'),
+('Adventure', 'fa-solid fa-rocket', '#2196F3'),
+('Sports', 'fa-solid fa-futbol', '#FFC107'),
+('Strategy', 'fa-solid fa-chess-knight', '#9C27B0'),
+('Racing', 'fa-solid fa-car', '#FFEB3B'),
+('Rhythm', 'fa-solid fa-music', '#673AB7'),
+('Survival', 'fa-solid fa-heartbeat', '#F44336'),
+('Horror', 'fa-solid fa-skull', '#607D8B'),
+('Party', 'fa-solid fa-dice', '#795548'),
+('MMO', 'fa-solid fa-users', '#00BCD4'),
+('Music', 'fa-solid fa-drum', '#FF9800'),
+('Shooting', 'fa-solid fa-crosshairs', '#FF0000'),
+('Boy Games', 'fa-solid fa-football-ball', '#1E88E5'),
+('Girl Games', 'fa-solid fa-heart', '#E91E63'),
+('Multiplayer', 'fa-solid fa-users', '#8BC34A'),
+('Idle', 'fa-solid fa-clock', '#FF9800'),
+('Board Games', 'fa-solid fa-chess', '#3F51B5'),
+('Kids', 'fa-solid fa-child', '#FFEB3B');
+
+INSERT INTO Game (Gtitle, Image, URL, Description) VALUES
+('Drift King', 'https://www.onlinegames.io/media/posts/729/responsive/Drift-King-xs.jpg', 'https://www.onlinegames.io/games/2024/unity/drift-king/index.html', 'Drift King stands out among online drift games...'),
+('Highway Traffic', 'https://www.onlinegames.io/media/posts/32/responsive/Highway-Traffic-2-xs.jpg', 'https://www.onlinegames.io/games/2022/unity/highway-traffic/index.html', 'Highway Traffic game is centered around driving...'),
+('Masked Special Forces', 'https://www.onlinegames.io/media/posts/310/responsive/Masked-Special-Forces-FPS-xs.jpg', 'https://www.onlinegames.io/games/2022/unity2/masked-special-forces/index.html', 'Masked Special Forces is a multiplayer first-person shooter game...'),
+('Real Flight Simulator', 'https://www.onlinegames.io/media/posts/342/responsive/Real-Flight-Simulator-2-xs.jpg', 'https://www.onlinegames.io/games/2023/unity/real-flight-simulator/index.html', 'Real Flight Simulator is a realistic game that gives you the ultimate flight experience...'),
+('GTA Simulator', 'https://www.onlinegames.io/media/posts/416/responsive/GTA-Simulator-xs.jpg', 'https://www.onlinegames.io/games/2023/unity2/gta-simulator/index.html', 'Meet its online and free version on OnlineGames.io...'),
+('Madalin Stunt Cars Pro', 'https://www.onlinegames.io/media/posts/401/responsive/Madalin-Stunt-Cars-Pro-Game-xs.jpg', 'https://www.onlinegames.io/games/2023/unity/madalin-stunt-cars-pro/index.html', 'The 3D driving game Madalin Stunt Cars Pro features excellent graphics...'),
+('Love Tester', 'https://www.onlinegames.io/media/posts/152/responsive/love-tester-xs.jpg', 'https://www.onlinegames.io/games/2021/3/love-tester/index.html', 'Do you want to know how much your crush falls for you?...'),
+('Drift Hunters Pro', 'https://www.onlinegames.io/media/posts/397/responsive/Drift-Hunters-Pro-xs.jpg', 'https://www.onlinegames.io/games/2023/unity/drift-hunters-pro/index.html', 'Can you hear the engine moaning?  Drift Hunters Pro is a thrilling 3D game with high-quality graphics for those who are fond of drifting & racing.  You can play solely, or you can play on the servers with other players.  In this game, you have 6 different tracks and 10 upgradable vehicles in the garage that you can buy with earnings via drifting.'),
+('Stack Fire Ball', 'https://www.onlinegames.io/media/posts/184/responsive/Stack-Fire-Ball-Game-xs.jpg', 'https://www.onlinegames.io/games/2021/unity/stack-fire-ball/index.html', 'Reach the end by guiding the ball through each stage, avoiding the dark tiles. This game is a combination between relaxation but also keeping attention to details. With modern graphics, you will enjoy knocking down the colorful tiles as fast as you can.  Let the ball bounce and complete all the stages.'),
+('Stickman Destruction', 'https://www.onlinegames.io/media/posts/233/responsive/Stickman-Destruction-xs.jpg', 'https://www.onlinegames.io/games/2021/unity3/stickman-destruction/index.html', 'How many parts can you divide a virtual character into?  Stickman Destruction is an action-oriented stickman ragdoll game in which you tear the virtual character apart a million times.  The whole point of this game is to break the Stickman’s bones as much as possible by hitting him from right to left!  Use your creativity and strategically calculate how you can get the most points.'),
+('Police Chase Drifter', 'https://www.onlinegames.io/media/posts/155/responsive/Police-Chase-Drifter-Online-xs.jpg', 'https://www.onlinegames.io/games/2021/3/police-chase-drifter/index.html', 'Collect money and ride with speed while escaping the police cars.  Police Chase Drifter will give you the chance to  become a drifter champion driving through the obstacles of the city.  You will only get rid of the police cars by making them destroy themselves in the tight corners. Follow the arrows that will show you the way to the money.'),
+('Capybara Clicker Pro', 'https://www.onlinegames.io/media/posts/554/responsive/Capybara-Clicker-Pro-xs.jpg', 'https://www.onlinegames.io/games/2023/q2/capybara-clicker-pro/index.html', 'Capybara Clicker Pro is an idle clicker game in which you tap on the adorable Capybara to collect Capybara coins.  Increase the number of coins you make by clicking on the cute animal every second and every click to achieve more significant figures!  The goal of this game is to tap and earn coins.  As you progress, you\'ll also be able to unlock new great characters!'),
+('Edys Car Simulator', 'https://www.onlinegames.io/media/posts/238/responsive/Edys-Car-Simulator-Online-xs.jpg', 'https://www.onlinegames.io/games/2022/unity/edys-car-simulator/index.html', 'Do you fancy doing some sightseeing?  Edy\'s Car Simulator is a game where you can freely wander the streets!  The city is all yours.  You are free to use the whole city however you want.'),
+('Highway Racer Pro', 'https://www.onlinegames.io/media/posts/822/responsive/Highway-Racer-Pro-xs.jpg', 'https://www.onlinegames.io/games/2024/unity/highway-racer-pro/index.html', 'For our community, who have played for hours and loved our Highway Traffic game, we know you\'ve been asking us for an even more advanced version for some time.  And we\'re proud to say that we\'ve delivered just that.  Ladies and Gentlemen, we are introducing Highway Racer Pro, the ultimate driving-in-traffic game, offering a great gameplay experience that\'s sure to satisfy even the most demanding drivers.  As you drive through heavy traffic, you\'ll have the same opportunity to cut up cars and make your way to the top as you did before in other traffic games.'),
+('Get On Top', 'https://www.onlinegames.io/media/posts/697/responsive/Get-on-Top-xs.jpg', 'https://www.onlinegames.io/games/2024/code/6/get-on-top/index.html', 'Remember those days when you and your brother used to wrestle for hours until one of you cried and complained to Mom?  It was a real duel, wasn\'t it?  You would flip over together like a human ball, with arms and legs flying in the air.  So, we\'ve brought sibling wrestling to the virtual realm.'),
+('Crazy Drifter', 'https://www.onlinegames.io/media/posts/314/responsive/Crazy-Drifter-xs.jpg', 'https://www.onlinegames.io/games/2022/unity3/crazy-drifter/index.html', 'The streets are calling you!  Crazy Drifter is a racing simulator game where you tend to drift often.  This game is a different breath of racing games.  I am sure you will be addicted to the adrenaline this game causes you to release!'),
+('Drift Rider', 'https://www.onlinegames.io/media/posts/553/responsive/Drift-Rider-xs.jpg', 'https://www.onlinegames.io/games/2023/unity3/drift-rider/index.html', 'Drift Rider is a 3D drift game where the players can customize their vehicle and then hit the road.  There are 5 distinct racetracks that the player can drift on.  You may drive on a highway or in the streets of a city. Or, take the task of navigating a curving and narrow intercity route by drifting.'),
+('ArmedForces.io', 'https://www.onlinegames.io/media/posts/234/responsive/Armed-Forces-io-xs.jpg', 'https://www.onlinegames.io/games/2021/unity3/armedforces-io/index.html', 'Prepare for epic battles!  ArmedForces. io is a 3D action game where you will combat enemy forces on various game maps with multiple game mode choices.  Arrange your loadouts from eight unique weapons at your disposal.'),
+('Guerrillas io', 'https://www.onlinegames.io/media/posts/423/responsive/Guerillas-io-xs.jpg', 'https://www.onlinegames.io/games/2023/unity2/guerrillas-io/index.html', 'You are a particular elite team member and are called into battle.  Your weapons are ready, and your equipment is prepared.  All your team needs is you.  Guerrillas io is a multiplayer battling game that you can play online.'),
+('Super Mini Racing', 'https://www.onlinegames.io/media/posts/819/responsive/Super-Mini-Racing-xs.jpg', 'https://www.onlinegames.io/games/2022/unity4/super-mini-racing/index.html', 'A super duper race is about to begin in just a few minutes!  Choose your car and take your position behind the wheel for Super Mini Racing—a 3D racing game that offers both single-player and two-player modes.  You\'ll be driving super mini cars across 10 different racetracks, competing to be the winner and claim the prize.'),
+('Legendary Sniper', 'https://www.onlinegames.io/media/posts/596/responsive/Legendary-Sniper-xs.jpg', 'https://www.onlinegames.io/games/2021/unity3/legendary-sniper/index.html', 'Legendary Sniper is an online sniper shooter game where you follow the commands of your general.  War has begun!  You are the most talented sniper of the squad.  The fate of the battle is in your hands.'),
+('Drift Fury', 'https://www.onlinegames.io/media/posts/650/responsive/Drift-Fury-xs.jpg', 'https://www.onlinegames.io/games/2023/unity/drift-fury/index.html', 'Drift Fury is a 3D drift game where you participate in drift challenges and races with the most exotic sports cars.  You will enjoy driving your car near the pine trees and mountain views.  Get in the driver\'s seat and start the engine.  The winding road calls you to make the dust fly in one of the most enjoyable driving games!'),
+('Monster Truck Racing', 'https://www.onlinegames.io/media/posts/826/responsive/Monster-Truck-Racing-xs.jpg', 'https://www.onlinegames.io/games/2021/1/monster-truck-racing/index.html', 'Giant wheels and incredible engine power—Monster Trucks are amazing machines built for high performance on rough terrains.  In this mini-game, players race to the finish line with monster trucks on an obstacle course.  Drive your truck, perform jumps and flips, and be the first to reach the flag.'),
+('Car Football', 'https://www.onlinegames.io/media/posts/405/responsive/Car-Football-xs.jpg', 'https://www.onlinegames.io/games/2023/construct/198/car-football/index.html', 'Are you ready to breathe new life');

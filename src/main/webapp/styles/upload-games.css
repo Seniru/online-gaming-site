@@ -7,5 +7,16 @@ fieldset:first-child {
 }
 
 label {
-	margin-right: 10px;
+	margin: 3px;
+	display: inline-block;
+}
+
+#image-preview {
+	max-width: 300px;
+	max-height: 300px;
+}
+
+#image-preview > img {
+	width: 100%;
+	height: 100%;
 }

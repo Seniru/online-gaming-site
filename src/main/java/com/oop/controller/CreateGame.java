@@ -1,6 +1,8 @@
 package com.oop.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -24,25 +26,34 @@ public class CreateGame extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-
                 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/upload-games.jsp");
 		dispatcher.forward(request, response);
 		
-        
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
+
+        List<String> categoryValues = Arrays.asList(request.getParameterValues("category[]"));
+        ArrayList<Category> categories = new ArrayList<Category>();
+
+        for (String cat : categoryValues) {
+            Category category = Category.fromCname(cat);
+            if (category != null) categories.add(category);
+        }
 
         Game newGame = new Game(
             request.getParameter("title"),
             request.getParameter("description"),
             request.getParameter("image"),
             request.getParameter("url"),
-            new ArrayList<Category>()
+            categories
         );
-		newGame.save();
+		
+        newGame.save();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/explore.jsp");
+		dispatcher.forward(request, response);
 
 	}
 

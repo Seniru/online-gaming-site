@@ -25,43 +25,183 @@
 	<jsp:include page="./views/header.jsp" />
     <aside class="container">
         <ul class="category-list">
-            <li>
-                <a href="#">
-                    <div class="chip">
-                        <i class="fa-solid fa-dice-three fa-lg"></i>
-                        <div class="name-container">Category 1</div>
-                    </div>
-        
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="chip">
-                        <i class="fa-solid fa-dice-three fa-lg"></i>
-                        <div class="name-container">Category 1</div>
-                    </div>
-        
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="chip">
-                        <i class="fa-solid fa-dice-three fa-lg"></i>
-                        <div class="name-container">Category 1</div>
-                    </div>
-        
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="chip">
-                        <i class="fa-solid fa-dice-three fa-lg"></i>
-                        <div class="name-container">Category 1</div>
-                    </div>
-        
-                </a>
-            </li>
-        </ul>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-gamepad fa-lg" style="color: #4CAF50;"></i>
+						<div class="name-container">Action</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-puzzle-piece fa-lg" style="color: #FF5722;"></i>
+						<div class="name-container">Puzzle</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-rocket fa-lg" style="color: #2196F3;"></i>
+						<div class="name-container">Adventure</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-futbol fa-lg" style="color: #FFC107;"></i>
+						<div class="name-container">Sports</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-chess-knight fa-lg" style="color: #9C27B0;"></i>
+						<div class="name-container">Strategy</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-car fa-lg" style="color: #FFEB3B;"></i>
+						<div class="name-container">Racing</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-music fa-lg" style="color: #673AB7;"></i>
+						<div class="name-container">Rhythm</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-heartbeat fa-lg" style="color: #F44336;"></i>
+						<div class="name-container">Survival</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-skull fa-lg" style="color: #607D8B;"></i>
+						<div class="name-container">Horror</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-dice fa-lg" style="color: #795548;"></i>
+						<div class="name-container">Party</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-users fa-lg" style="color: #00BCD4;"></i>
+						<div class="name-container">MMO</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-drum fa-lg" style="color: #FF9800;"></i>
+						<div class="name-container">Music</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-brain fa-lg" style="color: #3F51B5;"></i>
+						<div class="name-container">Puzzle</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-star fa-lg" style="color: #FFEB3B;"></i>
+						<div class="name-container">Adventure</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-flag fa-lg" style="color: #009688;"></i>
+						<div class="name-container">Sports</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-crosshairs fa-lg" style="color: #FF0000;"></i>
+						<div class="name-container">Shooting</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-football-ball fa-lg" style="color: #1E88E5;"></i>
+						<div class="name-container">Boy Games</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-heart fa-lg" style="color: #E91E63;"></i>
+						<div class="name-container">Girl Games</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-users fa-lg" style="color: #8BC34A;"></i>
+						<div class="name-container">Multiplayer</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-clock fa-lg" style="color: #FF9800;"></i>
+						<div class="name-container">Idle</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-chess fa-lg" style="color: #3F51B5;"></i>
+						<div class="name-container">Board Games</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="chip">
+						<i class="fa-solid fa-child fa-lg" style="color: #FFEB3B;"></i>
+						<div class="name-container">Kids</div>
+					</div>
+				</a>
+			</li>
+		</ul>
     </aside>
 	<div class="wrapper">
 		<h3>Search For Games</h3>

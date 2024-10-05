@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.oop.models.Category" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -13,42 +18,43 @@
 		<script src="scripts/upload-games.js"></script>
 		<!--font awesome-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
-		<title>Components</title>
+		<title>Upload games</title>
 	</head>
 	<body>
 		<jsp:include page="./views/header.jsp" />
 		<div class="wrapper">
 			<h2>Upload games</h2>
-			<form class="container">
+			<form method="POST" action="" class="container">
 				<fieldset>
 					<label>Title</label>
 					<br>
-					<input type="text" name="title">
+					<input type="text" name="title" required>
 					<br><br>
 					<label>Description</label>
 					<br>
-					<textarea cols="80" rows="10"></textarea>
-					<br>
-					<label>Categories</label>
+					<textarea name="description" cols="80" rows="10" required></textarea>
 					<br><br>
-					<label>
-						<input type="checkbox" name="category[]" value="cat">
-						Category 1
-						<i class="fa-solid fa-dice-three fa-lg"></i>
+					<label>Categories</label>
+					<br>
+					<%
+						ArrayList<Category> categories = Category.getAllCategories();
+						for (Category cat : categories) {
+					%>
+					<label style="padding: 3px; background-color: <% out.write(cat.getColor()); %>22; color: <% out.write(cat.getColor()); %>;">
+						<input type="checkbox" name="category[]" value="<% out.write(cat.getCname()); %>">
+						<% out.write(cat.getCname()); %>
+						<i class="<% out.write(cat.getIcon()); %>"></i>
 					</label>
-					<label>
-						<input type="checkbox" name="category[]" value="cat">
-						Category 2
-						<i class="fa-solid fa-dice-three fa-lg"></i>
-					</label>
-					<label>
-						<input type="checkbox" name="category[]" value="cat">
-						Category 3
-						<i class="fa-solid fa-dice-three fa-lg"></i>
-					</label>
+					<%
+						}
+					%>
+					
 					<br><br>
 					Cover image
-					<input name="file"type="file">
+					<br>
+					<input name="file" type="file">
+					<span> or </span>
+					<input type="text" name="image" id="image-link" placeholder="Insert image link here..." required>
 					<br><br>
 					Preview
 					<div id="image-preview">
@@ -63,7 +69,7 @@
 					</select>
 					<br><br>
 					<div id="upload-method">
-						<input name="link"type="text" placeholder="Enter link">
+						<input name="url" type="text" placeholder="Enter link" required>
 					</div>
 				</fieldset>
 				<input type="submit" name="submit" value="Submit">
