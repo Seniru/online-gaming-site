@@ -1,6 +1,7 @@
 package com.oop.models;
 
 import java.util.ArrayList;
+import java.io.PrintWriter;
 import java.sql.*;
 
 import com.oop.utils.DBConn;
@@ -20,7 +21,7 @@ public class Game extends GameBase {
 	public void save() {
 		try {
 			Connection conn = DBConn.getConnection();
-			PreparedStatement stmt = conn.prepareStatement("REPLACE INTO Game (Gtitle, Image, URL, Description VALUES(?,?,?, ?)");
+			PreparedStatement stmt = conn.prepareStatement("REPLACE INTO Game (Gtitle, Image, URL, Description) VALUES (?, ?, ?, ?)");
 			stmt.setString(1,this.title);
 			stmt.setString(2,this.image);
 			stmt.setString(3,this.url);
@@ -40,7 +41,7 @@ public class Game extends GameBase {
 	}
 
 	@Override
-	public void print() {
+	public void print(PrintWriter out) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'print'");
 	}

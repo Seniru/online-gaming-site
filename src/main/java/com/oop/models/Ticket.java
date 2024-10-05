@@ -1,6 +1,7 @@
 package com.oop.models;
 
 import java.sql.*;
+import java.io.PrintWriter;
 
 import com.oop.utils.DBConn;
 
@@ -52,7 +53,7 @@ public class Ticket implements Persistable, Printable {
 		}
 
 		@Override
-		public void print() {
+		public void print(PrintWriter out) {
 			// TODO Auto-generated method stub
 			throw new UnsupportedOperationException("Unimplemented method 'print'");
 		}
@@ -72,7 +73,7 @@ public class Ticket implements Persistable, Printable {
 				stmt.setString(2, this.body);
 				stmt.setString(3, this.user.getUsername());
 				stmt.executeUpdate();
-			}catch (SQLException e){
+			} catch (SQLException e){
 				System.out.println(e);
 			}		
 		}
