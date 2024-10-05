@@ -10,6 +10,18 @@
 	margin-right: 25px;
 }
 
+#extra {
+	display: flex;
+	align-items: center;
+}
+#extra > * {
+	margin-left: 5px;
+}
+
+#extra > h1 {
+	margin-right: 50px;
+}
+
 .badge {
 	border-radius: 30px;
     padding: 3px 10px;

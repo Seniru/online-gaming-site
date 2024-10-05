@@ -41,6 +41,18 @@ public class RegisteredUser extends BaseUser {
 	}
 
 	@Override
+	public void delete() {
+		try {
+			Connection conn = DBConn.getConnection();
+			PreparedStatement userDeleteStmt = conn.prepareStatement("DELETE FROM User WHERE Username = ?");
+			userDeleteStmt.setString(1, username);
+			userDeleteStmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
+
+	@Override
 	public void load() {
 		try {
 			Connection conn = DBConn.getConnection();

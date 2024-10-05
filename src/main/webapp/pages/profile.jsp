@@ -116,17 +116,24 @@
             	<input type="text" id="Email" name="Email" placeholder="Enter your Email" value="<% out.print(profileUser.getEmail()); %>"><br><br>
             	<label for="New password">New Password:</label><br>
             	<input type="password" id="pwd" name="Password"placeholder="Enter a new password"><br><br>
-				<label for="Confirm new password">Confrim New Password:</label><br>
+				<label for="Confirm new password">Confirm New Password:</label><br>
             	<input type="password" id="conf-pwd" placeholder="Re-Enter new password"><br><br>
 
             	<br><br>
             	<input type="submit" value="Save changes" name="Save Changes">
         	</form>
 		</div>
-		<div class="wrapper">
+		<div class="wrapper" id="extra">
 			<h1>Extra actions</h1>
-			<input type="submit" value="Become a pro!" name="Save Changes">
-			<input type="submit" value="Become a devoloper" name="Save Changes">		
+			<form method="POST" action="">
+				<input type="submit" name="action" value="Become a pro!">
+			</form>
+			<form method="POST" action="">
+				<input type="submit" name="action" value="Become a developer">
+			</form>
+			<form method="POST" action="">
+				<input type="submit" name="action" value="Delete account" style="background-color: #F44336;">
+			</form>
 		</div>
 	</body>
 </html>

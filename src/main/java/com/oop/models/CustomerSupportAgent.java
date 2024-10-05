@@ -11,6 +11,11 @@ public class CustomerSupportAgent extends BaseUser {
 	}
 
 	@Override
+	public void delete() {
+		throw new UnsupportedOperationException("Cannot delete customer support agents!");
+	}
+
+	@Override
 	public void load() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'load'");
