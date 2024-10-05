@@ -1,4 +1,6 @@
 package com.oop.models;
+import java.sql.*;
+import com.oop.utils.DBConn;
 
 public class Category implements Persistable, Printable {
 	
@@ -36,20 +38,50 @@ public class Category implements Persistable, Printable {
 
 	@Override
 	public void print() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'print'");
+        String html =
+                  "<div class=\"chip\">" +
+                  "<i class=\"icon\">" + this.icon ; style=\"color:" + this.color + ";\"></i>" +
+                  "</div>" +
+                  "<div class=\"name container\">" + this.cname + "</div>";
+        System.out.println(html);
+
 	}
 
 	@Override
 	public void load() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'load'");
+		try{
+			Connection conn = DBConn.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Category WHERE cname = ? ");
+			stmt.setString(1,cname);
+			ResultSet res = stmt.executeQuery();
+
+			if(res.next()){
+
+			this.cname = res.getString("cname");
+			this.icon = res.getString("icon");
+			this.color = res.getString("color ");
+
+			}else{
+				System.out.println("Category not found");
+			}
+
+		}catch(SQLException e ){
+			System.out.println(e);
+		}
 	}
 
 	@Override
 	public void save() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'save'");
+		try {
+			Connection conn = DBConn.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("REPLACE INTO cname (cname, icon, color ) VALUES (?, ?, ?)");
+			stmt.setString(1, this.cname);
+			stmt.setString(2, this.icon);
+			stmt.setString(3, this.color );
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
 	}
     
 }
