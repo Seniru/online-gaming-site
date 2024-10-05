@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/logout")
 public class Logout extends HttpServlet {
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  public Logout() {
-    super();
-  }
+    public Logout() {
+        super();
+    }
 
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    request.getSession().removeAttribute("user");
-    response.sendRedirect("explore");
-  }
+        request.getSession().removeAttribute("user");
+        response.sendRedirect("explore");
+    }
 }

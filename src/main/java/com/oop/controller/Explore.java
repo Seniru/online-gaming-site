@@ -10,16 +10,16 @@ import javax.servlet.RequestDispatcher;
 
 @WebServlet("/explore")
 public class Explore extends HttpServlet {
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  public Explore() {
-    super();
-  }
+    public Explore() {
+        super();
+    }
 
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/explore.jsp");
-    dispatcher.forward(request, response);
-  }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/explore.jsp");
+        dispatcher.forward(request, response);
+    }
 }

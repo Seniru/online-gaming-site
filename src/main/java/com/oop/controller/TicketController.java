@@ -13,31 +13,31 @@ import com.oop.models.RegisteredUser;
 
 @WebServlet("/Ticket")
 public class TicketController extends HttpServlet {
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  public TicketController() {
-    super();
-  }
+    public TicketController() {
+        super();
+    }
 
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    response.setContentType("text/html");
-    PrintWriter out = response.getWriter();
-  }
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+    }
 
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    Ticket newTicket =
-        new Ticket(
-            0,
-            request.getParameter("Title"),
-            request.getParameter("Body"),
-            (RegisteredUser) request.getSession().getAttribute("user"));
+        Ticket newTicket =
+                new Ticket(
+                        0,
+                        request.getParameter("Title"),
+                        request.getParameter("Body"),
+                        (RegisteredUser) request.getSession().getAttribute("user"));
 
-    newTicket.save();
-    response.setContentType("text/html");
-    PrintWriter out = response.getWriter();
-  }
+        newTicket.save();
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+    }
 }

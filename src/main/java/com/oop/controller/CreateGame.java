@@ -16,40 +16,40 @@ import com.oop.models.Category;
 
 @WebServlet("/upload")
 public class CreateGame extends HttpServlet {
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  public CreateGame() {
-    super();
-  }
-
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/upload-games.jsp");
-    dispatcher.forward(request, response);
-  }
-
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-
-    List<String> categoryValues = Arrays.asList(request.getParameterValues("category[]"));
-    ArrayList<Category> categories = new ArrayList<Category>();
-
-    for (String cat : categoryValues) {
-      Category category = Category.fromCname(cat);
-      if (category != null) categories.add(category);
+    public CreateGame() {
+        super();
     }
 
-    Game newGame =
-        new Game(
-            request.getParameter("title"),
-            request.getParameter("description"),
-            request.getParameter("image"),
-            request.getParameter("url"),
-            categories);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    newGame.save();
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/explore.jsp");
-    dispatcher.forward(request, response);
-  }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/upload-games.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        List<String> categoryValues = Arrays.asList(request.getParameterValues("category[]"));
+        ArrayList<Category> categories = new ArrayList<Category>();
+
+        for (String cat : categoryValues) {
+            Category category = Category.fromCname(cat);
+            if (category != null) categories.add(category);
+        }
+
+        Game newGame =
+                new Game(
+                        request.getParameter("title"),
+                        request.getParameter("description"),
+                        request.getParameter("image"),
+                        request.getParameter("url"),
+                        categories);
+
+        newGame.save();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/explore.jsp");
+        dispatcher.forward(request, response);
+    }
 }
