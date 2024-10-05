@@ -29,6 +29,22 @@ public abstract class BaseUser implements Persistable {
 		return this.profilePicture;
 	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setProfilePicture(String profilePicture) {
+		this.profilePicture = profilePicture;
+	}
+
 	public abstract void delete();
 
 	@Override

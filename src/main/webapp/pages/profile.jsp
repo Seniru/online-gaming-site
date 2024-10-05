@@ -111,16 +111,16 @@
             <h1>Details</h1>
             <form method="POST" action="">
             	<label for="name">Username:</label><br>
-            	<input type="text" id="name" name="name" placeholder="Enter your name" value="<% out.print(profileUser.getUsername()); %>"><br><br>
+            	<input type="text" id="name" name="username" placeholder="Enter your name" value="<% out.print(profileUser.getUsername()); %>"><br><br>
             	<label for="Email">Email:</label><br>
-            	<input type="text" id="Email" name="Email" placeholder="Enter your Email" value="<% out.print(profileUser.getEmail()); %>"><br><br>
+            	<input type="text" id="Email" name="email" placeholder="Enter your Email" value="<% out.print(profileUser.getEmail()); %>"><br><br>
             	<label for="New password">New Password:</label><br>
-            	<input type="password" id="pwd" name="Password"placeholder="Enter a new password"><br><br>
+            	<input type="password" id="pwd" name="password" placeholder="Enter a new password"><br><br>
 				<label for="Confirm new password">Confirm New Password:</label><br>
             	<input type="password" id="conf-pwd" placeholder="Re-Enter new password"><br><br>
 
             	<br><br>
-            	<input type="submit" value="Save changes" name="Save Changes">
+            	<input type="submit" value="Save changes" name="update">
         	</form>
 		</div>
 		<div class="wrapper" id="extra">

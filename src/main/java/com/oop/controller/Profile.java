@@ -31,14 +31,18 @@ public class Profile extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
 
-		switch (request.getParameter("action")) {
-            case "Delete account":
-                delete(request, response);
-                break;
-            case "Become a pro!":
-                break;
-            case "Become a developer":
-                break;
+        if (request.getParameter("action") != null) {
+            switch (request.getParameter("action")) {
+                case "Delete account":
+                    delete(request, response);
+                    break;
+                case "Become a pro!":
+                    break;
+                case "Become a developer":
+                    break;
+            }
+        } else if (request.getParameter("update") != null) {
+            updateProfile(request, response);
         }
 
 	}
@@ -51,6 +55,21 @@ public class Profile extends HttpServlet {
         user.delete();
 		response.sendRedirect("explore");
         session.removeAttribute("user");
+
+    }
+
+    protected void updateProfile(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        RegisteredUser user = (RegisteredUser) session.getAttribute("user");
+        user.setUsername(request.getParameter("username"));
+        user.setPassword(request.getParameter("password"));
+        user.setEmail(request.getParameter("email"));
+        user.save();
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile.jsp");
+		dispatcher.forward(request, response);
 
     }
 }
