@@ -8,119 +8,123 @@ import com.oop.utils.DBConn;
 import com.oop.exceptions.GamehubException;
 
 public class Category implements Persistable, Printable {
-	
-	private String cname;
-	private String icon;
-	private String color;
 
-	public Category(String cname, String icon, String color) {
-		this.cname = cname;
-		this.icon = icon;
-		this.color = color;
-	}
+  private String cname;
+  private String icon;
+  private String color;
 
-	public String getCname() {
-		return this.cname;
-	}
-	public void setCname(String cname) {
-		this.cname = cname;
-	}
+  public Category(String cname, String icon, String color) {
+    this.cname = cname;
+    this.icon = icon;
+    this.color = color;
+  }
 
-	public String getIcon() {
-		return this.icon;
-	}
+  public String getCname() {
+    return this.cname;
+  }
 
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
+  public void setCname(String cname) {
+    this.cname = cname;
+  }
 
-	public String getColor() {
-		return this.color;
-	}
+  public String getIcon() {
+    return this.icon;
+  }
 
-	public void setColor(String color) {
-		this.color = color;
-	}
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
 
-	public static ArrayList<Category> getAllCategories() {
-		ArrayList<Category> categories = new ArrayList<Category>();
-		try {
-			Connection conn = DBConn.getConnection();
-			Statement stmt = conn.createStatement();
-			ResultSet res = stmt.executeQuery("SELECT * FROM Category");
-			
-			while (res.next()) {
-				categories.add(new Category(
-					res.getString("Cname"),
-					res.getString("Icon"),
-					res.getString("Color")
-				));
-			}
+  public String getColor() {
+    return this.color;
+  }
 
-		} catch (SQLException e) {
-			System.out.println(e);
-		}
-		return categories;
-	}
+  public void setColor(String color) {
+    this.color = color;
+  }
 
-	public static Category fromCname(String cname) {
-		try {
-			Category cat = new Category(cname, null, null);
-			cat.load();
-			return cat;
-		} catch (GamehubException e) {
-			System.out.println(e);
-			return null;
-		}
-	}
+  public static ArrayList<Category> getAllCategories() {
+    ArrayList<Category> categories = new ArrayList<Category>();
+    try {
+      Connection conn = DBConn.getConnection();
+      Statement stmt = conn.createStatement();
+      ResultSet res = stmt.executeQuery("SELECT * FROM Category");
 
-	@Override
-	public void print(PrintWriter out) {
-        String html =
-                "<div class=\"chip\">"
-                + "<i class=\"" + this.icon + "\" style=\"color:" + this.color + ";\"></i>"
-                + "<div class=\"name-container\">" + this.cname + "</div>"
-                + "</div>";
+      while (res.next()) {
+        categories.add(
+            new Category(res.getString("Cname"), res.getString("Icon"), res.getString("Color")));
+      }
 
-        out.print(html);
-	}
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+    return categories;
+  }
 
-	@Override
-	public void load() throws GamehubException {
-		try{
-			Connection conn = DBConn.getConnection();
-			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Category WHERE cname = ? ");
-			stmt.setString(1,cname);
-			ResultSet res = stmt.executeQuery();
+  public static Category fromCname(String cname) {
+    try {
+      Category cat = new Category(cname, null, null);
+      cat.load();
+      return cat;
+    } catch (GamehubException e) {
+      System.out.println(e);
+      return null;
+    }
+  }
 
-			if (res.next()){
+  @Override
+  public void print(PrintWriter out) {
+    String html =
+        "<div class=\"chip\">"
+            + "<i class=\""
+            + this.icon
+            + "\" style=\"color:"
+            + this.color
+            + ";\"></i>"
+            + "<div class=\"name-container\">"
+            + this.cname
+            + "</div>"
+            + "</div>";
 
-				this.cname = res.getString("Cname");
-				this.icon = res.getString("Icon");
-				this.color = res.getString("Color");
+    out.print(html);
+  }
 
-			} else {
-				System.out.println("Category not found");
-				throw new GamehubException("Category not found");
-			}
+  @Override
+  public void load() throws GamehubException {
+    try {
+      Connection conn = DBConn.getConnection();
+      PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Category WHERE cname = ? ");
+      stmt.setString(1, cname);
+      ResultSet res = stmt.executeQuery();
 
-		} catch (SQLException e){
-			System.out.println(e);
-		}
-	}
+      if (res.next()) {
 
-	@Override
-	public void save() {
-		try {
-			Connection conn = DBConn.getConnection();
-			PreparedStatement stmt = conn.prepareStatement("REPLACE INTO Category (Cname, Icon, Color ) VALUES (?, ?, ?)");
-			stmt.setString(1, this.cname);
-			stmt.setString(2, this.icon);
-			stmt.setString(3, this.color);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println(e);
-		}
-	}
-    
+        this.cname = res.getString("Cname");
+        this.icon = res.getString("Icon");
+        this.color = res.getString("Color");
+
+      } else {
+        System.out.println("Category not found");
+        throw new GamehubException("Category not found");
+      }
+
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+  }
+
+  @Override
+  public void save() {
+    try {
+      Connection conn = DBConn.getConnection();
+      PreparedStatement stmt =
+          conn.prepareStatement("REPLACE INTO Category (Cname, Icon, Color ) VALUES (?, ?, ?)");
+      stmt.setString(1, this.cname);
+      stmt.setString(2, this.icon);
+      stmt.setString(3, this.color);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+  }
 }
