@@ -30,7 +30,8 @@ header {
 }
 
 header > .logo-image {
-	width: 100px;
+	width: 150px;
+    margin-left: 10px;
 }
 
 header > nav {

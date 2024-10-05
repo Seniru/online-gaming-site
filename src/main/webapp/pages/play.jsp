@@ -18,8 +18,7 @@
 		<div class="wrapper">
 			<div>
 			<div id="gamebox">
-				<img id="my" src="" alt="images">
-
+				<embed type="text/html" src="https://www.onlinegames.io/games/2022/construct/134/f1-drift-racer/index.html" width="860px" height="400px">
 			</div>	
 			<div id="title-row">
 				<h1>title </h1>

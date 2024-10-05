@@ -1,7 +1,7 @@
 <%@ page import="com.oop.models.RegisteredUser" %>
 
 <header>
-	<img src="./" class="logo-image">
+	<img src="images/logo.png" class="logo-image">
 	<nav>
 		<input type="search" placeholder="Search games">
 		<button>Go</button>
