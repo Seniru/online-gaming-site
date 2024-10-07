@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
-
 @WebServlet("/play")
 public class Play extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -20,11 +19,8 @@ public class Play extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                 RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/play.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/play.jsp");
         dispatcher.forward(request, response);
-
-
-
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
