@@ -42,6 +42,24 @@ public class Game extends GameBase {
 
     }
 
+    public static ArrayList<Game> getAllGames() {
+        ArrayList<Game> games = new ArrayList<Game>();
+        
+
+         try {
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game WHERE Gtitle = ?");
+            stmt.setString(1, title);
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+
+    
+
+
+
+    }
+
     @Override
     public void load() {}
 

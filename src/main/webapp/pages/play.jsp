@@ -57,7 +57,6 @@
 		</div>
 		<p>
 			<% out.print(game.getDescription());%>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias consectetur blanditiis illo eveniet adipisci cum. Aperiam, deleniti unde debitis maiores eos iure aut eaque sit temporibus magni neque, aliquid quo!
 		</p>
 
 		</div>
