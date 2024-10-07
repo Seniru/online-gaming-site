@@ -17,6 +17,31 @@ public class Game extends GameBase {
         super(title, description, image, url, categories);
     }
 
+    public static Game fromTitle(String title) {
+        try {
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game WHERE Gtitle = ?");
+            stmt.setString(1, title);
+            ResultSet res = stmt.executeQuery();
+
+            if (res.next()) {
+                return new Game(
+                        res.getString("Gtitle"),
+                        res.getString("Description"),                      
+                        res.getString("Image"),
+                        res.getString("Url"),
+                        new ArrayList<Category>()
+                );
+            }
+             return null;
+        
+    }catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+
+    }
+
     @Override
     public void load() {}
 

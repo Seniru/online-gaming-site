@@ -1,3 +1,12 @@
+<%@ page import="com.oop.models.Game" %>
+
+<% 
+	String title=request.getParameter("title");
+	out.print(title);
+
+
+	Game game = Game.fromTitle(title);
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,8 +16,8 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">		<link rel="stylesheet" href="../styles/components.css">
-		<link rel="stylesheet" href="../styles/components.css">
-		<link rel="stylesheet" href="../styles/play.css">
+		<link rel="stylesheet" href="styles/components.css">
+		<link rel="stylesheet" href="styles/play.css">
 		<!--font awesome-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
 		<title>Components</title>
@@ -18,10 +27,10 @@
 		<div class="wrapper">
 			<div>
 			<div id="gamebox">
-				<embed type="text/html" src="https://www.onlinegames.io/games/2022/construct/134/f1-drift-racer/index.html" width="860px" height="400px">
+				<embed type="text/html" src="<% out.print(game.getUrl());%> "width="860px" height="400px">
 			</div>	
 			<div id="title-row">
-				<h1>title </h1>
+				<h1><% out.print(game.getTitle());%> </h1>
 				<div id="star">
 					<div>
 					<i class="fa-solid fa-star"></i>
@@ -47,6 +56,7 @@
 
 		</div>
 		<p>
+			<% out.print(game.getDescription());%>
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias consectetur blanditiis illo eveniet adipisci cum. Aperiam, deleniti unde debitis maiores eos iure aut eaque sit temporibus magni neque, aliquid quo!
 		</p>
 
