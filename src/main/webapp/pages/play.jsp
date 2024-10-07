@@ -2,9 +2,6 @@
 
 <% 
 	String title=request.getParameter("title");
-	out.print(title);
-
-
 	Game game = Game.fromTitle(title);
 %>
 
