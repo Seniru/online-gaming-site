@@ -42,36 +42,30 @@ public class Game extends GameBase {
 
     public static ArrayList<Game> getAllGames() {
         ArrayList<Game> games = new ArrayList<Game>();
-        
 
-         try {
+        try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game");
-            
+
             ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
-                Game game = new Game(
-                        res.getString("Gtitle"),
-                        res.getString("Description"),
-                        res.getString("Image"),
-                        res.getString("Url"),
-                        new ArrayList<Category>());
-                
-                games.add(game);
+                Game game =
+                        new Game(
+                                res.getString("Gtitle"),
+                                res.getString("Description"),
+                                res.getString("Image"),
+                                res.getString("Url"),
+                                new ArrayList<Category>());
 
-                                }
-                                return games;
-           
-            }  
-            catch (SQLException e) {
+                games.add(game);
+            }
+            return games;
+
+        } catch (SQLException e) {
             System.out.println(e);
             return null;
-}
-    
-
-
-
+        }
     }
 
     @Override
