@@ -27,19 +27,17 @@ public class Game extends GameBase {
             if (res.next()) {
                 return new Game(
                         res.getString("Gtitle"),
-                        res.getString("Description"),                      
+                        res.getString("Description"),
                         res.getString("Image"),
                         res.getString("Url"),
-                        new ArrayList<Category>()
-                );
+                        new ArrayList<Category>());
             }
-             return null;
-        
-    }catch (SQLException e) {
+            return null;
+
+        } catch (SQLException e) {
             System.out.println(e);
             return null;
         }
-
     }
 
     public static ArrayList<Game> getAllGames() {
@@ -70,7 +68,7 @@ public class Game extends GameBase {
             PreparedStatement stmt =
                     conn.prepareStatement(
                             "REPLACE INTO Game (Gtitle, Image, URL, Description) VALUES (?, ?, ?,"
-                                + " ?)");
+                                    + " ?)");
             stmt.setString(1, this.title);
             stmt.setString(2, this.image);
             stmt.setString(3, this.url);
