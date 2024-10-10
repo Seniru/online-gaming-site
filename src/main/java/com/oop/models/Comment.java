@@ -1,11 +1,11 @@
 package com.oop.models;
 
-import java.io.PrintWriter;
+import java.io.Writer;
 
 public class Comment implements Persistable, Printable {
 
     @Override
-    public void print(PrintWriter out) {
+    public void print(Writer out) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'print'");
     }

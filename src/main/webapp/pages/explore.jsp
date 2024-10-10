@@ -34,16 +34,13 @@
         <ul class="category-list">
 			
 			<%
-						ArrayList<Category> categories = Category.getAllCategories();
-						for (Category cat : categories) {
+				ArrayList<Category> categories = Category.getAllCategories();
+				for (Category cat : categories) {
 
 			%>
 			<li>
 				<a href="#">
-					<div class="chip">
-						<i class="<% out.write(cat.getIcon()); %>" style="color: <% out.write(cat.getColor()); %>"></i>
-						<div class="name-container"><% out.write(cat.getCname()); %></div>
-					</div>
+					<% cat.print(out); %>
 				</a>
 			</li>
 	
@@ -51,6 +48,7 @@
 				}
 			%>
 		</ul>
+		<br><br><br>
     </aside>
 	<div class="wrapper">
 		<h3>Search For Games</h3>
@@ -129,13 +127,7 @@
 						ArrayList<Game> games = Game.getAllGames();
 						for (Game game  : games) {
 							
-			%>
-			<div class="game container">
-				<img src="<% out.write(game.getImage()); %>">
-			<span><a href="./play?title=<% out.write(game.getTitle()); %>"><% out.write(game.getTitle()); %></a></span>
-		</div>
-
-		<%
+			game.print(out);
 			
 	}
 
