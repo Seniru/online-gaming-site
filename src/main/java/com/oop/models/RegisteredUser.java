@@ -24,9 +24,10 @@ public class RegisteredUser extends BaseUser {
     public void becomeDeveloper() {
           try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE Username = ?");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO DevUser (?)");
             stmt.setString(1, username);
-            ResultSet res = stmt.executeQuery();
+            ResultSet res = stmt.executeUpdate();
+           
 
     }
         

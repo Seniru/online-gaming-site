@@ -63,6 +63,12 @@ public class Profile extends HttpServlet {
         user.setPassword(request.getParameter("password"));
         user.setEmail(request.getParameter("email"));
         user.save();
+    protected void becomeDeveloper(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+             RegisteredUser user = (RegisteredUser) session.getAttribute("user");   
+
+
+
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile.jsp");
         dispatcher.forward(request, response);
