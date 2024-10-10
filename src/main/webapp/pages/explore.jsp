@@ -68,54 +68,38 @@
 		</div>
 		<section class="trending-section">
 		<h2><i class="fa-solid fa-arrow-trend-up"> </i> Trending Games </h2>
+		<%
+		
+						ArrayList<Game> trendingGames = Game.getTrendingGames();
+						for (Game tgame  : trendingGames) {
+							
+			%>
 		<div class="game container">
-				<img src="../images/game.avif">
-			<span>Title</span>
+				<img src="<% out.write(tgame.getImage()); %>">
+				<span><a href="./play?title=<% out.write(tgame.getTitle()); %>"><% out.write(tgame.getTitle()); %></a></span>
 		</div>
-		<div class="game container">
-			<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
-		<div class="game container">
-				<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
-		<div class="game container">
-				<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
-		<div class="game container">
-				<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
+		<% } %>
 		</section>
 
 		<section class="recommended-section">
 		<h2><i class="fa-solid fa-thumbs-up"></i> Recommended Games</h2>
+		<%
+		
+						ArrayList<Game> recommendedGames = Game.getRecommendedGames();
+						for (Game rgame  : recommendedGames) {
+							
+			%>
 		<div class="game container">
-				<img src="../images/game.avif">
-			<span>Title</span>
+			<img src="<% out.write(rgame.getImage()); %>">
+			<span><a href="./play?title=<% out.write(rgame.getTitle()); %>"><% out.write(rgame.getTitle()); %></a></span>
 		</div>
-		<div class="game container">
-			<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
-		<div class="game container">
-				<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
-		<div class="game container">
-				<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
-		<div class="game container">
-				<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
+		<% } %>
+
 
 		</section>
 		<section class="pro-section">
 		<h2><i class="fa-brands fa-web-awesome"></i> Pro Games</h2>
+		
 		<div class="game container">
 				<img src="../images/game.avif">
 			<span>Title</span>
