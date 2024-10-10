@@ -30,7 +30,6 @@ public class Profile extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile.jsp");
             dispatcher.forward(request, response);
         }
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -77,23 +76,23 @@ public class Profile extends HttpServlet {
         user.setPassword(request.getParameter("password"));
         user.setEmail(request.getParameter("email"));
         user.save();
-          }
-    protected void becomeDeveloper(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-            HttpSession session = request.getSession();
-             RegisteredUser user = (RegisteredUser) session.getAttribute("user");   
-
-
-            user.becomeDeveloper();
     }
 
-    protected void saveGame(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-                HttpSession session = request.getSession();
+    protected void becomeDeveloper(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        RegisteredUser user = (RegisteredUser) session.getAttribute("user");
+
+        user.becomeDeveloper();
+    }
+
+    protected void saveGame(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
 
         String title = request.getParameter("title");
         RegisteredUser user = (RegisteredUser) session.getAttribute("user");
         Game game = Game.fromTitle(title);
         user.saveGame(game);
-
     }
 }

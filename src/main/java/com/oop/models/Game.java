@@ -159,11 +159,16 @@ public class Game extends GameBase {
     public void print(Writer out) {
         try {
             out.write(
-                "<div class=\"game container\">"
-                + "<img src=\"" + this.getImage() + "\">"
-                + "<span><a href=\"./play?title=" + this.getTitle() + "\">" + this.getTitle() +"</a></span>"
-                + "</div>"
-            );
+                    "<div class=\"game container\">"
+                            + "<img src=\""
+                            + this.getImage()
+                            + "\">"
+                            + "<span><a href=\"./play?title="
+                            + this.getTitle()
+                            + "\">"
+                            + this.getTitle()
+                            + "</a></span>"
+                            + "</div>");
         } catch (IOException e) {
             System.out.println(e);
         }

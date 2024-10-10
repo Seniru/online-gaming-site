@@ -26,7 +26,8 @@ public class RegisteredUser extends BaseUser {
     public void play(GameBase game) {
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Play (Gtitle, Username) VALUES (?, ?)");
+            PreparedStatement stmt =
+                    conn.prepareStatement("INSERT INTO Play (Gtitle, Username) VALUES (?, ?)");
             stmt.setString(1, game.getTitle());
             stmt.setString(2, this.getUsername());
             stmt.executeUpdate();
@@ -38,28 +39,28 @@ public class RegisteredUser extends BaseUser {
     public void saveGame(GameBase game) {
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Favourites (Gtitle, Username) VALUES (?, ?)");
+            PreparedStatement stmt =
+                    conn.prepareStatement(
+                            "INSERT INTO Favourites (Gtitle, Username) VALUES (?, ?)");
             stmt.setString(1, game.getTitle());
             stmt.setString(2, this.getUsername());
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
-
     }
 
     public ArrayList<Game> getPlayedGames() {
         try {
             ArrayList<Game> playedGames = new ArrayList<Game>();
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT Gtitle FROM Play WHERE Username = ?");
+            PreparedStatement stmt =
+                    conn.prepareStatement("SELECT DISTINCT Gtitle FROM Play WHERE Username = ?");
             stmt.setString(1, this.username);
             ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
-                playedGames.add(Game.fromTitle(
-                    res.getString("Gtitle")
-                ));
+                playedGames.add(Game.fromTitle(res.getString("Gtitle")));
             }
             Collections.reverse(playedGames);
             return playedGames;
@@ -74,14 +75,14 @@ public class RegisteredUser extends BaseUser {
         try {
             ArrayList<Game> favouriteGames = new ArrayList<Game>();
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT Gtitle FROM Favourites WHERE Username = ?");
+            PreparedStatement stmt =
+                    conn.prepareStatement(
+                            "SELECT DISTINCT Gtitle FROM Favourites WHERE Username = ?");
             stmt.setString(1, this.username);
             ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
-                favouriteGames.add(Game.fromTitle(
-                    res.getString("Gtitle")
-                ));
+                favouriteGames.add(Game.fromTitle(res.getString("Gtitle")));
             }
             Collections.reverse(favouriteGames);
             return favouriteGames;
@@ -95,7 +96,8 @@ public class RegisteredUser extends BaseUser {
     public void play(GameBase game) {
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Play (Gtitle, Username) VALUES (?, ?)");
+            PreparedStatement stmt =
+                    conn.prepareStatement("INSERT INTO Play (Gtitle, Username) VALUES (?, ?)");
             stmt.setString(1, game.getTitle());
             stmt.setString(2, this.getUsername());
             stmt.executeUpdate();
@@ -107,28 +109,28 @@ public class RegisteredUser extends BaseUser {
     public void saveGame(GameBase game) {
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Favourites (Gtitle, Username) VALUES (?, ?)");
+            PreparedStatement stmt =
+                    conn.prepareStatement(
+                            "INSERT INTO Favourites (Gtitle, Username) VALUES (?, ?)");
             stmt.setString(1, game.getTitle());
             stmt.setString(2, this.getUsername());
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
-
     }
 
     public ArrayList<Game> getPlayedGames() {
         try {
             ArrayList<Game> playedGames = new ArrayList<Game>();
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT Gtitle FROM Play WHERE Username = ?");
+            PreparedStatement stmt =
+                    conn.prepareStatement("SELECT DISTINCT Gtitle FROM Play WHERE Username = ?");
             stmt.setString(1, this.username);
             ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
-                playedGames.add(Game.fromTitle(
-                    res.getString("Gtitle")
-                ));
+                playedGames.add(Game.fromTitle(res.getString("Gtitle")));
             }
             Collections.reverse(playedGames);
             return playedGames;
@@ -143,14 +145,14 @@ public class RegisteredUser extends BaseUser {
         try {
             ArrayList<Game> favouriteGames = new ArrayList<Game>();
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT Gtitle FROM Favourites WHERE Username = ?");
+            PreparedStatement stmt =
+                    conn.prepareStatement(
+                            "SELECT DISTINCT Gtitle FROM Favourites WHERE Username = ?");
             stmt.setString(1, this.username);
             ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
-                favouriteGames.add(Game.fromTitle(
-                    res.getString("Gtitle")
-                ));
+                favouriteGames.add(Game.fromTitle(res.getString("Gtitle")));
             }
             Collections.reverse(favouriteGames);
             return favouriteGames;
@@ -162,19 +164,16 @@ public class RegisteredUser extends BaseUser {
     }
 
     public void becomeDeveloper() {
-          try {
+        try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO DevUser (?)");
             stmt.setString(1, username);
             stmt.executeUpdate();
 
-          }catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e);
-
-          }
-
+        }
     }
-        
 
     public static RegisteredUser fromUsername(String username) {
         try {
