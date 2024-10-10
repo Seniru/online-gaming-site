@@ -21,6 +21,16 @@ public class RegisteredUser extends BaseUser {
         this.isDev = isDev;
     }
 
+    public void becomeDeveloper() {
+          try {
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE Username = ?");
+            stmt.setString(1, username);
+            ResultSet res = stmt.executeQuery();
+
+    }
+        
+
     public static RegisteredUser fromUsername(String username) {
         try {
             Connection conn = DBConn.getConnection();
