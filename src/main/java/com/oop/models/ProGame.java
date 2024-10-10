@@ -1,6 +1,6 @@
 package com.oop.models;
 
-import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 
 public class ProGame extends GameBase {
@@ -27,7 +27,7 @@ public class ProGame extends GameBase {
     }
 
     @Override
-    public void print(PrintWriter out) {
+    public void print(Writer out) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'print'");
     }

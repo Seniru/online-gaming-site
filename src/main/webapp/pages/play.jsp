@@ -1,8 +1,15 @@
 <%@ page import="com.oop.models.Game" %>
+<%@ page import="com.oop.models.RegisteredUser" %>
 
 <% 
-	String title=request.getParameter("title");
+	String title = request.getParameter("title");
 	Game game = Game.fromTitle(title);
+
+	RegisteredUser user = (RegisteredUser) session.getAttribute("user");
+	if (user != null) {
+		user.play(game);
+	}
+
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -15,9 +22,10 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">		<link rel="stylesheet" href="../styles/components.css">
 		<link rel="stylesheet" href="styles/components.css">
 		<link rel="stylesheet" href="styles/play.css">
+		<script src="scripts/play.js"></script>
 		<!--font awesome-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
-		<title>Components</title>
+		<title>Play</title>
 	</head>
 	<body>
 		<jsp:include page="./views/header.jsp" />
@@ -37,7 +45,7 @@
 					<i class="fa-solid fa-star"></i>
 					<i class="fa-solid fa-star"></i>
 					</div>
-					<div id="heart">
+					<div id="heart" onclick="saveGame()">
 						<i class="fa-solid fa-heart"></i>
 					</div>
 				</div>

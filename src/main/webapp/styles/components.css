@@ -269,5 +269,6 @@ select:active {
     justify-items: center;
     padding: 4px;
     align-content: stretch;
-	
+	width: 130px;
+	height: 160px;
 }

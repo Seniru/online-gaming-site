@@ -1,7 +1,8 @@
 package com.oop.models;
 
 import java.util.ArrayList;
-import java.io.PrintWriter;
+import java.io.Writer;
+import java.io.IOException;
 import java.sql.*;
 
 import com.oop.utils.DBConn;
@@ -70,68 +71,59 @@ public class Game extends GameBase {
 
     public static ArrayList<Game> getTrendingGames() {
         ArrayList<Game> games = new ArrayList<Game>();
-        
 
-         try {
+        try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game");
-            
+
             ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
-                Game tGame = new Game(
-                        res.getString("Gtitle"),
-                        res.getString("Description"),
-                        res.getString("Image"),
-                        res.getString("Url"),
-                        new ArrayList<Category>());
-                
-                games.add(tGame);
+                Game tGame =
+                        new Game(
+                                res.getString("Gtitle"),
+                                res.getString("Description"),
+                                res.getString("Image"),
+                                res.getString("Url"),
+                                new ArrayList<Category>());
 
-                                }
-                                return games;
-           
-            }  
-            catch (SQLException e) {
+                games.add(tGame);
+            }
+            return games;
+
+        } catch (SQLException e) {
             System.out.println(e);
             return null;
-}
-    
-
-
-
+        }
     }
 
     public static ArrayList<Game> getRecommendedGames() {
         ArrayList<Game> games = new ArrayList<Game>();
-        
 
-         try {
+        try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game");
-            
+
             ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
-                Game rgame = new Game(
-                        res.getString("Gtitle"),
-                        res.getString("Description"),
-                        res.getString("Image"),
-                        res.getString("Url"),
-                        new ArrayList<Category>());
-                
-                games.add(rgame);
+                Game rgame =
+                        new Game(
+                                res.getString("Gtitle"),
+                                res.getString("Description"),
+                                res.getString("Image"),
+                                res.getString("Url"),
+                                new ArrayList<Category>());
 
-                                }
-                                return games;
-           
-            }  
-            catch (SQLException e) {
+                games.add(rgame);
+            }
+            return games;
+
+        } catch (SQLException e) {
             System.out.println(e);
             return null;
-}
+        }
     }
-
 
     @Override
     public void load() {}
@@ -164,8 +156,21 @@ public class Game extends GameBase {
     }
 
     @Override
-    public void print(PrintWriter out) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'print'");
+    public void print(Writer out) {
+        try {
+            out.write(
+                    "<div class=\"game container\">"
+                            + "<img src=\""
+                            + this.getImage()
+                            + "\">"
+                            + "<span><a href=\"./play?title="
+                            + this.getTitle()
+                            + "\">"
+                            + this.getTitle()
+                            + "</a></span>"
+                            + "</div>");
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }

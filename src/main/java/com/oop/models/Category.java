@@ -1,6 +1,7 @@
 package com.oop.models;
 
-import java.io.PrintWriter;
+import java.io.Writer;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.sql.*;
 
@@ -76,20 +77,24 @@ public class Category implements Persistable, Printable {
     }
 
     @Override
-    public void print(PrintWriter out) {
-        String html =
-                "<div class=\"chip\">"
-                        + "<i class=\""
-                        + this.icon
-                        + "\" style=\"color:"
-                        + this.color
-                        + ";\"></i>"
-                        + "<div class=\"name-container\">"
-                        + this.cname
-                        + "</div>"
-                        + "</div>";
+    public void print(Writer out) {
+        try {
+            String html =
+                    "<div class=\"chip\">"
+                            + "<i class=\""
+                            + this.icon
+                            + "\" style=\"color:"
+                            + this.color
+                            + ";\"></i>"
+                            + "<div class=\"name-container\">"
+                            + this.cname
+                            + "</div>"
+                            + "</div>";
 
-        out.print(html);
+            out.write(html);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
     @Override
