@@ -70,68 +70,59 @@ public class Game extends GameBase {
 
     public static ArrayList<Game> getTrendingGames() {
         ArrayList<Game> games = new ArrayList<Game>();
-        
 
-         try {
+        try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game");
-            
+
             ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
-                Game tGame = new Game(
-                        res.getString("Gtitle"),
-                        res.getString("Description"),
-                        res.getString("Image"),
-                        res.getString("Url"),
-                        new ArrayList<Category>());
-                
-                games.add(tGame);
+                Game tGame =
+                        new Game(
+                                res.getString("Gtitle"),
+                                res.getString("Description"),
+                                res.getString("Image"),
+                                res.getString("Url"),
+                                new ArrayList<Category>());
 
-                                }
-                                return games;
-           
-            }  
-            catch (SQLException e) {
+                games.add(tGame);
+            }
+            return games;
+
+        } catch (SQLException e) {
             System.out.println(e);
             return null;
-}
-    
-
-
-
+        }
     }
 
     public static ArrayList<Game> getRecommendedGames() {
         ArrayList<Game> games = new ArrayList<Game>();
-        
 
-         try {
+        try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game");
-            
+
             ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
-                Game rgame = new Game(
-                        res.getString("Gtitle"),
-                        res.getString("Description"),
-                        res.getString("Image"),
-                        res.getString("Url"),
-                        new ArrayList<Category>());
-                
-                games.add(rgame);
+                Game rgame =
+                        new Game(
+                                res.getString("Gtitle"),
+                                res.getString("Description"),
+                                res.getString("Image"),
+                                res.getString("Url"),
+                                new ArrayList<Category>());
 
-                                }
-                                return games;
-           
-            }  
-            catch (SQLException e) {
+                games.add(rgame);
+            }
+            return games;
+
+        } catch (SQLException e) {
             System.out.println(e);
             return null;
-}
+        }
     }
-
 
     @Override
     public void load() {}
