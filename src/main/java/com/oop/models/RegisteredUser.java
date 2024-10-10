@@ -1,6 +1,8 @@
 package com.oop.models;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import com.oop.utils.DBConn;
 
@@ -19,6 +21,75 @@ public class RegisteredUser extends BaseUser {
         super(username, password, email, profilePicture);
         this.isPro = isPro;
         this.isDev = isDev;
+    }
+
+    public void play(GameBase game) {
+        try {
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Play (Gtitle, Username) VALUES (?, ?)");
+            stmt.setString(1, game.getTitle());
+            stmt.setString(2, this.getUsername());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void saveGame(GameBase game) {
+        try {
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Favourites (Gtitle, Username) VALUES (?, ?)");
+            stmt.setString(1, game.getTitle());
+            stmt.setString(2, this.getUsername());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public ArrayList<Game> getPlayedGames() {
+        try {
+            ArrayList<Game> playedGames = new ArrayList<Game>();
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT Gtitle FROM Play WHERE Username = ?");
+            stmt.setString(1, this.username);
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                playedGames.add(Game.fromTitle(
+                    res.getString("Gtitle")
+                ));
+            }
+            Collections.reverse(playedGames);
+            return playedGames;
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    public ArrayList<Game> getSavedGames() {
+        try {
+            ArrayList<Game> favouriteGames = new ArrayList<Game>();
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT Gtitle FROM Favourites WHERE Username = ?");
+            stmt.setString(1, this.username);
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                favouriteGames.add(Game.fromTitle(
+                    res.getString("Gtitle")
+                ));
+            }
+            Collections.reverse(favouriteGames);
+            return favouriteGames;
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
     }
 
     public static RegisteredUser fromUsername(String username) {

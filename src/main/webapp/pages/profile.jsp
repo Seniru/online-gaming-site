@@ -1,6 +1,17 @@
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="com.oop.models.RegisteredUser" %>
+<%@ page import="com.oop.models.Game" %>
 
-<% RegisteredUser profileUser = (RegisteredUser) session.getAttribute("user"); %>
+<%
+	
+	if (session.getAttribute("user") == null) {
+		response.sendRedirect("explore");
+		return;
+	}
+
+	RegisteredUser profileUser = (RegisteredUser) session.getAttribute("user");
+	
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,52 +41,31 @@
 			</div>
 			<br>
 			<hr>
-			<section class="trending-section">
-			<h2>Recent games </h2>
-			<div class="game container">
-					<img src="../images/game.avif">
-				<span>Title</span>
-			</div>
-			<div class="game container">
-				<img src="../images/game.avif">
-				<span>Title</span>
-			</div>
-			<div class="game container">
-					<img src="../images/game.avif">
-				<span>Title</span>
-			</div>
-			<div class="game container">
-					<img src="../images/game.avif">
-				<span>Title</span>
-			</div>
-			<div class="game container">
-					<img src="../images/game.avif">
-				<span>Title</span>
-			</div>
+
+			<section class="recent-section">
+				<h2>Recent games </h2>
+				<% 
+					ArrayList<Game> recentGames = profileUser.getPlayedGames();
+					int i = 0;
+
+					for (Game game : recentGames) {
+						game.print(out);
+						if (++i == 5) break;
+					}
+				%>
 			</section>
 
 		<section class="recommended-section">
 		<h2> Saved Games</h2>
-		<div class="game container">
-				<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
-		<div class="game container">
-			<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
-		<div class="game container">
-				<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
-		<div class="game container">
-				<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
-		<div class="game container">
-				<img src="../images/game.avif">
-			<span>Title</span>
-		</div>
+		<% 
+			ArrayList<Game> favourites = profileUser.getSavedGames();
+			i = 0;
+
+			for (Game game : favourites) {
+				game.print(out);
+				if (++i == 5) break;
+			}
+		%>
 
 		</section>
 		<section class="pro-section">

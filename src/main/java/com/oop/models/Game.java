@@ -1,7 +1,8 @@
 package com.oop.models;
 
 import java.util.ArrayList;
-import java.io.PrintWriter;
+import java.io.Writer;
+import java.io.IOException;
 import java.sql.*;
 
 import com.oop.utils.DBConn;
@@ -99,8 +100,16 @@ public class Game extends GameBase {
     }
 
     @Override
-    public void print(PrintWriter out) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'print'");
+    public void print(Writer out) {
+        try {
+            out.write(
+                "<div class=\"game container\">"
+                + "<img src=\"" + this.getImage() + "\">"
+                + "<span><a href=\"./play?title=" + this.getTitle() + "\">" + this.getTitle() +"</a></span>"
+                + "</div>"
+            );
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }
