@@ -61,6 +61,10 @@
 			comment
 		</h2>
 		<div class="comment container">
+			<%
+            ArrayList<Comment> comments = (ArrayList<Comment>) Comment.getcomments(game);
+            for (Comment comment : comments) {
+        %>
 			
 				<div>username</div>
 				<p>
@@ -70,7 +74,12 @@
 					2025/03/28
 				</span>
 			</div>
-		
+		<form action="comment" method="POST">
+			<textarea placeholder="Post a comment"  row="10" cols="5" name="Comment"></textarea>
+			<button type="submit">Submit</button>
+
+		</form>
+			
 
 		</div>
 	</body>
