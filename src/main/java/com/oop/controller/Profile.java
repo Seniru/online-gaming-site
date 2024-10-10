@@ -37,6 +37,7 @@ public class Profile extends HttpServlet {
                 case "Become a pro!":
                     break;
                 case "Become a developer":
+                    becomeDeveloper(request, response);
                     break;
             }
         } else if (request.getParameter("update") != null) {
@@ -63,14 +64,13 @@ public class Profile extends HttpServlet {
         user.setPassword(request.getParameter("password"));
         user.setEmail(request.getParameter("email"));
         user.save();
+          }
     protected void becomeDeveloper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            HttpSession session = request.getSession();
              RegisteredUser user = (RegisteredUser) session.getAttribute("user");   
 
 
-
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile.jsp");
-        dispatcher.forward(request, response);
+            user.becomeDeveloper();
     }
 }

@@ -26,8 +26,12 @@ public class RegisteredUser extends BaseUser {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO DevUser (?)");
             stmt.setString(1, username);
-            ResultSet res = stmt.executeUpdate();
-           
+            stmt.executeUpdate();
+
+          }catch (SQLException e) {
+            System.out.println(e);
+
+          }
 
     }
         
