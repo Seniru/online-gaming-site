@@ -128,6 +128,30 @@ public class RegisteredUser extends BaseUser {
         }
     }
 
+    public void postComment(Game game, String body) {
+        try {
+            Connection conn = DBConn.getConnection();
+            PreparedStatement countStmt = conn.prepareStatement("SELECT COUNT(*) FROM Comment WHERE Gtitle = ?");
+            countStmt.setString(1, game.getTitle());
+            ResultSet countRes = countStmt.executeQuery();
+            countRes.next();
+            int commentCount = countRes.getInt(1);
+
+            PreparedStatement cmm = conn.prepareStatement("INSERT INTO Comment VALUES (?, ?, ?, NOW())");
+            PreparedStatement ucmm = conn.prepareStatement("INSERT INTO UserComment VALUES (?, ?, ?)");
+            cmm.setInt(1, commentCount + 1);
+            cmm.setString(2, game.getTitle());
+            cmm.setString(3, body);
+            ucmm.setInt(1, commentCount + 1);
+            ucmm.setString(2, game.getTitle());
+            ucmm.setString(3, username);
+            cmm.executeUpdate();
+            ucmm.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     public static RegisteredUser fromUsername(String username) {
         try {
             Connection conn = DBConn.getConnection();

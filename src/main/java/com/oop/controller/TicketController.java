@@ -50,7 +50,7 @@ public class TicketController extends HttpServlet {
         Ticket t = Ticket.fromTicketID(id);
         t.resolve();
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/view-ticket.jsp?" + id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/view-ticket.jsp");
         dispatcher.forward(request, response);
 
     }

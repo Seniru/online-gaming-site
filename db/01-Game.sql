@@ -6,13 +6,15 @@ CREATE TABLE `Game` (
 );
 
 CREATE TABLE `Comment` (
-    `CommentId` INT PRIMARY KEY,
-    `Gtitle` VARCHAR(10),
+    `CommentId` INT,
+    `Gtitle` VARCHAR(30),
     `Body` VARCHAR(200),
+    `PostedDate` DATETIME,
+    PRIMARY KEY (`CommentId`, `Gtitle`),
     FOREIGN KEY (`Gtitle`) REFERENCES `Game`(`Gtitle`)
 );
 
-CREATE TABLE  `Category` (
+CREATE TABLE `Category` (
     `Cname` VARCHAR (20) PRIMARY KEY,
     `Icon` VARCHAR (100),
     `Color` VARCHAR (20)
@@ -27,7 +29,7 @@ CREATE TABLE `GameCategory` (
 
 CREATE TABLE `UserComment` (
      `CommentId` INT,
-     `Gtitle` VARCHAR(10),
+     `Gtitle` VARCHAR(30),
      `Username` VARCHAR(20),
      PRIMARY KEY (`CommentId`, `Gtitle`, `Username`),
      FOREIGN KEY (`CommentId`) REFERENCES `Comment`(`CommentId`),

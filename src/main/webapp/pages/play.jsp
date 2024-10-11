@@ -1,5 +1,7 @@
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="com.oop.models.Game" %>
 <%@ page import="com.oop.models.RegisteredUser" %>
+<%@ page import="com.oop.models.Comment" %>
 
 <% 
 	String title = request.getParameter("title");
@@ -35,7 +37,7 @@
 				<embed type="text/html" src="<% out.print(game.getUrl());%> "width="860px" height="400px">
 			</div>	
 			<div id="title-row">
-				<h1><% out.print(game.getTitle());%> </h1>
+				<h1><% out.print(game.getTitle());%></h1>
 				<div id="star">
 					<div>
 					<i class="fa-solid fa-star"></i>
@@ -65,27 +67,19 @@
 		</p>
 
 		</div>
-		<h2>
-			comment
-		</h2>
-		<div class="comment container">
-			<%
-            ArrayList<Comment> comments = (ArrayList<Comment>) Comment.getcomments(game);
-            for (Comment comment : comments) {
-        %>
-			
-				<div>username</div>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias consectetur blanditiis illo eveniet adipisci cum. Aperiam, deleniti unde debitis maiores eos iure aut eaque sit temporibus magni neque, aliquid quo!
-				</p>
-				<span>
-					2025/03/28
-				</span>
-			</div>
+		<h2>Comments</h2>
+		<%
+			ArrayList<Comment> comments = Comment.getComments(game);
+			for (Comment comment : comments) {
+				comment.print(out);
+			}
+		%>
+				
 		<form action="comment" method="POST">
-			<textarea placeholder="Post a comment"  row="10" cols="5" name="Comment"></textarea>
+			<input type="text" name="title" value="<% out.print(game.getTitle());%>" hidden readonly>
+			<textarea placeholder="Post a comment" rows="5" cols="80" name="comment"></textarea>
+			<br>
 			<button type="submit">Submit</button>
-
 		</form>
 			
 

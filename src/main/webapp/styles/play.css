@@ -9,7 +9,8 @@
     align-items: center;
     justify-content: space-between;
 }
-#star{
+
+#star {
     display: flex;
     align-items: center;
 
@@ -17,16 +18,19 @@
 #heart{
     margin-left: 12px;
 }
-.comment{
+
+.comment {
     display: flex;
     align-items: center;
     flex-direction: row;
 }
 
 .comment > p {
-    margin-left: 5px;
+    margin-left: 30px;
     margin-right: 5px;
+    width: 80%;
 }
-#user{
+
+#user {
     margin-right: 5px
 }
