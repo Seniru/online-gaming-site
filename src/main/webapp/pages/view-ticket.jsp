@@ -48,7 +48,9 @@
             <p>
               <% out.write(ticket.getBody()); %>
             </p>
-             <input type="submit" value="Resolve Ticket" style="float:right;">
+
+             <input type="submit" name="delete" value="Delete Ticket" style="float: right; margin: 3px; background-color: #F44336;">
+             <input type="submit" name="resolve" value="Resolve Ticket" style="float:right; margin: 3px;">
              <br><br>
            </form>
        

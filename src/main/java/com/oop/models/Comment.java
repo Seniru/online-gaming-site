@@ -116,4 +116,11 @@ public class Comment implements Persistable, Printable {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
+
+    @Override
+    public void delete() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+    
 }

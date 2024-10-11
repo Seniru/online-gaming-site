@@ -137,4 +137,10 @@ public class Category implements Persistable, Printable {
             System.out.println(e);
         }
     }
+
+    @Override
+    public void delete() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
 }

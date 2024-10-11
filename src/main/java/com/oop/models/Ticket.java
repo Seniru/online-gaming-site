@@ -167,4 +167,17 @@ public class Ticket implements Persistable, Printable {
             System.out.println(e);
         }
     }
+
+    @Override
+    public void delete() {
+        try {
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Ticket WHERE TicketID = ?");
+            stmt.setInt(1, this.ticketID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
 }

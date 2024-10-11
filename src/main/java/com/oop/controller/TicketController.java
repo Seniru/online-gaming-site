@@ -48,10 +48,15 @@ public class TicketController extends HttpServlet {
 
         int id = Integer.parseInt(request.getParameter("id"));
         Ticket t = Ticket.fromTicketID(id);
-        t.resolve();
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/view-ticket.jsp");
-        dispatcher.forward(request, response);
+        if (request.getParameter("resolve") != null) {
+            t.resolve();
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/view-ticket.jsp");
+            dispatcher.forward(request, response);
+        } else if (request.getParameter("delete") != null) {
+            t.delete();
+            response.sendRedirect("tickets");
+        }
 
     }
 }

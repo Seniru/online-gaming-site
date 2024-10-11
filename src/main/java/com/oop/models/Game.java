@@ -202,4 +202,11 @@ public class Game extends GameBase {
             System.out.println(e);
         }
     }
+
+    @Override
+    public void delete() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
 }
