@@ -79,27 +79,19 @@
 				<h2>Developed Games</h2>
 				<a href="upload"><button>Upload game</button></a>
 			</div>
-			<div class="game container">
-					<img src="../images/game.avif">
-				<span>Title</span>
-			</div>
-			<div class="game container">
-				<img src="../images/game.avif">
-				<span>Title</span>
-			</div>
-			<div class="game container">
-					<img src="../images/game.avif">
-				<span>Title</span>
-			</div>
-			<div class="game container">
-					<img src="../images/game.avif">
-				<span>Title</span>
-			</div>
-			<div class="game container">
-					<img src="../images/game.avif">
-				<span>Title</span>
-			</div>
-
+			<% 
+				ArrayList<Game> developed = Game.getGamesFrom(profileUser);
+				for (Game game : developed) {
+					out.write("<div class='developed-game'>");
+					game.print(out);
+			%>
+					<a href="delete-game?title=<% out.write(game.getTitle());%>">
+						<button>X</button>
+					</a>
+			<% 
+					out.write("</div>");
+				}
+			%>
 		</section>
 		<% } %>
 	

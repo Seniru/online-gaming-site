@@ -182,6 +182,7 @@ public class RegisteredUser extends BaseUser {
     }
 
     public static RegisteredUser fromUsername(String username) {
+        if (username == null) return null;
         try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE Username = ?");

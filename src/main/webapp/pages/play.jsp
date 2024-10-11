@@ -6,10 +6,12 @@
 <% 
 	String title = request.getParameter("title");
 	Game game = Game.fromTitle(title);
+	boolean loggedIn = false;
 
 	RegisteredUser user = (RegisteredUser) session.getAttribute("user");
 	if (user != null) {
 		user.play(game);
+		loggedIn = true;
 	}
 
 %>
@@ -71,7 +73,17 @@
 		<%
 			ArrayList<Comment> comments = Comment.getComments(game);
 			for (Comment comment : comments) {
+				out.write("<div class='comment-parent'>");
 				comment.print(out);
+				if (loggedIn && user.getUsername().equals(comment.getUser().getUsername())) {
+		%>
+			<a href="comment?action=delete&title=<% out.write(comment.getGame().getTitle()); %>&id=<% out.write(Integer.toString(comment.getCommentID())); %>">
+				<button>X</button>
+			</a>
+			
+		<%
+				}
+				out.write("</div>");
 			}
 		%>
 				

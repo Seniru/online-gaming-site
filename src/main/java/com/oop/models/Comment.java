@@ -23,6 +23,10 @@ public class Comment implements Persistable, Printable {
         this.postedDate = postedDate;
     }
 
+    public int getCommentID() {
+        return commentID;
+    }
+
     public void setCommentID(int commentID) {
         this.commentID = commentID;
     }
@@ -107,8 +111,24 @@ public class Comment implements Persistable, Printable {
 
     @Override
     public void load() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'load'");
+        try {
+            String sql = "SELECT * FROM UserComment uc, Comment c, User u"
+            + " WHERE c.CommentId = uc.commentId AND c.Gtitle = uc.Gtitle AND u.Username = uc.Username"
+            + " AND c.Gtitle = ? AND c.CommentId = ?";
+            
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, game.getTitle());
+            stmt.setInt(2, commentID);
+            ResultSet res = stmt.executeQuery();
+            if (res.next()) {
+                this.body = res.getString("Body");
+                this.user = RegisteredUser.fromUsername(res.getString("Username"));
+                this.postedDate = res.getString("PostedDate");
+            }            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     @Override
@@ -119,8 +139,19 @@ public class Comment implements Persistable, Printable {
 
     @Override
     public void delete() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        try {
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt1 = conn.prepareStatement("DELETE FROM UserComment WHERE Gtitle = ? AND CommentId = ?");
+            PreparedStatement stmt2 = conn.prepareStatement("DELETE FROM Comment WHERE Gtitle = ? AND CommentId = ?");
+            stmt1.setString(1, this.game.getTitle());
+            stmt1.setInt(2, this.commentID);
+            stmt2.setString(1, this.game.getTitle());
+            stmt2.setInt(2, this.commentID);
+            stmt1.executeUpdate();
+            stmt2.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println();
+        }
     }
-    
+
 }

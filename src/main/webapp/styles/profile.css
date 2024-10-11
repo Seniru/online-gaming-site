@@ -40,3 +40,22 @@
 .pro {
 	background-color: yellow;
 }
+
+.developed-game {
+	display: inline-block;
+	position: relative
+}
+
+.developed-game > a {
+	position: absolute;
+    right: 5px;
+}
+
+.developed-game > a > button {
+	border-radius: 25px;
+    background-color: #F44336;
+    padding: 5px;
+    color: white;
+    width: 25px;
+    height: 25px;
+}

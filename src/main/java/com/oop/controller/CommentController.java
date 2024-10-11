@@ -11,6 +11,7 @@ import javax.servlet.RequestDispatcher;
 
 import com.oop.models.RegisteredUser;
 import com.oop.models.Game;
+import com.oop.models.Comment;
 
 @WebServlet("/comment")
 public class CommentController extends HttpServlet {
@@ -23,8 +24,14 @@ public class CommentController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+        if ("delete".equals(request.getParameter("action"))) {
+            String title = request.getParameter("title");
+            int id = Integer.parseInt(request.getParameter("id"));
+            Comment comment = new Comment(id, Game.fromTitle(title), null, null, null);
+            comment.delete();
+            response.sendRedirect("play?title=" + title);
+
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

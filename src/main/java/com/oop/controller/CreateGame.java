@@ -13,6 +13,7 @@ import javax.servlet.RequestDispatcher;
 
 import com.oop.models.Game;
 import com.oop.models.Category;
+import com.oop.models.RegisteredUser;
 
 @WebServlet("/upload")
 public class CreateGame extends HttpServlet {
@@ -34,6 +35,8 @@ public class CreateGame extends HttpServlet {
 
         List<String> categoryValues = Arrays.asList(request.getParameterValues("category[]"));
         ArrayList<Category> categories = new ArrayList<Category>();
+        RegisteredUser user = (RegisteredUser) request.getSession().getAttribute("user");
+        user.load();
 
         for (String cat : categoryValues) {
             Category category = Category.fromCname(cat);
@@ -46,7 +49,8 @@ public class CreateGame extends HttpServlet {
                         request.getParameter("description"),
                         request.getParameter("image"),
                         request.getParameter("url"),
-                        categories);
+                        categories,
+                        user);
 
         newGame.save();
         RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/explore.jsp");
