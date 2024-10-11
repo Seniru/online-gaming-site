@@ -1,10 +1,18 @@
 <%@ page import="com.oop.models.RegisteredUser" %>
 
 <header>
+	<script>
+		let search = () => {
+			let query = document.getElementById("header-search")
+			let urlParams = new URLSearchParams(location.search)
+			urlParams.set("query", query.value)
+			window.location = "explore?" + urlParams.toString()
+		}
+	</script>
 	<img src="images/logo.png" class="logo-image">
 	<nav>
-		<input type="search" placeholder="Search games">
-		<button>Go</button>
+		<input type="search" placeholder="Search games" id="header-search">
+		<button onclick="search()">Go</button>
 		<ul>
 			<li><a href="./">Browse Games</a></li>
 			<li><a href="./">Support</a></li>
@@ -12,14 +20,14 @@
 	</nav>
 	<div id="profile-actions">
 		<%
-			RegisteredUser user = (RegisteredUser) session.getAttribute("user");
-			if (user != null) {
+			RegisteredUser u = (RegisteredUser) session.getAttribute("user");
+			if (u != null) {
 		%>
 		<a href='logout'><button>Logout</button></a>
 		<div>
 			<img class='profile-image' src='images/user-solid.svg'>
 			<div id="profile-name">
-				<% out.print(user.getUsername()); %>
+				<% out.print(u.getUsername()); %>
 				<button id='profile-dropdown'>v</button>
 			</div>
 		</div>

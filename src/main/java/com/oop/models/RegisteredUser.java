@@ -8,8 +8,8 @@ import com.oop.utils.DBConn;
 
 public class RegisteredUser extends BaseUser {
 
-    private boolean isPro;
-    private boolean isDev;
+    private boolean pro;
+    private boolean dev;
 
     public RegisteredUser(
             String username,
@@ -19,8 +19,24 @@ public class RegisteredUser extends BaseUser {
             boolean isPro,
             boolean isDev) {
         super(username, password, email, profilePicture);
-        this.isPro = isPro;
-        this.isDev = isDev;
+        this.pro = isPro;
+        this.dev = isDev;
+    }
+
+    public boolean isPro() {
+        return pro;
+    }
+
+    public void setPro() {
+        this.pro = pro;
+    }
+
+    public boolean isDev() {
+        return dev;
+    }
+
+    public void setDev() {
+        this.dev = dev;
     }
 
     public void play(GameBase game) {
@@ -156,8 +172,14 @@ public class RegisteredUser extends BaseUser {
         try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE Username = ?");
+            PreparedStatement proStmt = conn.prepareStatement("SELECT * FROM ProUser WHERE Username = ?");
+            PreparedStatement devStmt = conn.prepareStatement("SELECT * FROM DevUser WHERE Username = ?");
             stmt.setString(1, username);
+            proStmt.setString(1, username);
+            devStmt.setString(1, username);
             ResultSet res = stmt.executeQuery();
+            ResultSet proRes = proStmt.executeQuery();
+            ResultSet devRes = devStmt.executeQuery();
 
             if (res.next()) {
                 return new RegisteredUser(
@@ -165,8 +187,8 @@ public class RegisteredUser extends BaseUser {
                         res.getString("Password"),
                         res.getString("Email"),
                         "",
-                        false,
-                        false);
+                        proRes.next(),
+                        devRes.next());
             }
 
             return null;
@@ -194,14 +216,21 @@ public class RegisteredUser extends BaseUser {
         try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE username = ?");
+            PreparedStatement proStmt = conn.prepareStatement("SELECT * FROM ProUser WHERE username = ?");
+            PreparedStatement devStmt = conn.prepareStatement("SELECT * FROM DevUser WHERE username = ?");
             stmt.setString(1, username);
+            proStmt.setString(1, username);
+            devStmt.setString(1, username);
             ResultSet res = stmt.executeQuery();
+            ResultSet proRes = proStmt.executeQuery();
+            ResultSet devRes = devStmt.executeQuery();
+
             this.username = res.getString("Username");
             this.password = res.getString("Password");
             this.email = res.getString("Email");
             this.profilePicture = res.getString("ProfilePicture");
-            this.isPro = false;
-            this.isDev = false;
+            this.pro = proRes.next();
+            this.dev = devRes.next();
         } catch (SQLException e) {
             System.out.println(e);
         }

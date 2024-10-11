@@ -46,7 +46,7 @@ public class Game extends GameBase {
 
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game WHERE NOT IsPro");
 
             ResultSet res = stmt.executeQuery();
 
@@ -74,7 +74,7 @@ public class Game extends GameBase {
 
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game WHERE NOT IsPro");
 
             ResultSet res = stmt.executeQuery();
 
@@ -102,7 +102,7 @@ public class Game extends GameBase {
 
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game WHERE NOT IsPro");
 
             ResultSet res = stmt.executeQuery();
 
@@ -123,6 +123,35 @@ public class Game extends GameBase {
             System.out.println(e);
             return null;
         }
+    }
+
+    public static ArrayList<Game> searchGames(String query, ArrayList<Category> categories) {
+        ArrayList<Game> games = new ArrayList<Game>();
+
+        try {
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game WHERE NOT IsPro AND Gtitle LIKE ?");
+            stmt.setString(1, "%" + query + "%");
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                Game rgame =
+                        new Game(
+                                res.getString("Gtitle"),
+                                res.getString("Description"),
+                                res.getString("Image"),
+                                res.getString("Url"),
+                                new ArrayList<Category>());
+
+                games.add(rgame);
+            }
+            return games;
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+
     }
 
     @Override

@@ -1,7 +1,11 @@
 package com.oop.models;
 
 import java.io.Writer;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.sql.*;
+
+import com.oop.utils.DBConn;
 
 public class ProGame extends GameBase {
 
@@ -13,6 +17,35 @@ public class ProGame extends GameBase {
             ArrayList<Category> categories) {
         super(title, description, image, url, categories);
     }
+
+    public static ArrayList<ProGame> getAllGames() {
+        ArrayList<ProGame> games = new ArrayList<ProGame>();
+
+        try {
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game WHERE IsPro");
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                ProGame game =
+                        new ProGame(
+                                res.getString("Gtitle"),
+                                res.getString("Description"),
+                                res.getString("Image"),
+                                res.getString("Url"),
+                                new ArrayList<Category>());
+
+                games.add(game);
+            }
+            return games;
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
 
     @Override
     public void load() {
@@ -28,7 +61,20 @@ public class ProGame extends GameBase {
 
     @Override
     public void print(Writer out) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'print'");
+        try {
+            out.write(
+                    "<div class=\"game container\">"
+                            + "<img src=\""
+                            + this.getImage()
+                            + "\">"
+                            + "<span><a href=\"./play?title="
+                            + this.getTitle()
+                            + "\">"
+                            + this.getTitle()
+                            + "</a></span>"
+                            + "</div>");
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }

@@ -2,7 +2,8 @@ CREATE TABLE `Game` (
     `Gtitle` VARCHAR(30) PRIMARY KEY ,
     `Image` VARCHAR(100),
     `URL` VARCHAR(200),
-    `Description` VARCHAR(1024)
+    `Description` VARCHAR(1024),
+    `IsPro` BOOLEAN
 );
 
 CREATE TABLE `Comment` (

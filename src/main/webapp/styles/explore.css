@@ -40,5 +40,27 @@ aside > ul > li > a > .chip {
 
 #Gobutton{
     color: var(--text-color);
-    padding: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+    margin-left: 8px;
+}
+
+.scrollable-game-list {
+    text-wrap: nowrap;
+    max-width: 100vw;
+    overflow-x: scroll;
+}
+
+.category-list > .selected > a > .chip {
+    background-color: #5a5a5a;
+}
+
+.category-removable {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--input-color);
+    border-radius: 20px;
+    padding-right: 10px;
+    margin: 1px 3px;
 }
