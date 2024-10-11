@@ -1,3 +1,7 @@
+<%@ page import="com.oop.models.Ticket" %>
+<%@ page import="java.util.ArrayList" %>
+
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,22 +13,31 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">		<link rel="stylesheet" href="../styles/components.css">
 		<link rel="stylesheet" href="styles/components.css">
+		<link rel="stylesheet" href="styles/view-tickets.css">
 		<!--font awesome-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
-		<title>Customer Support</title>
+		<title>View tickets</title>
 	</head>
 	<body>
 		<jsp:include page="./views/header.jsp" />
 		<div class="wrapper">
-        <div class="container">
-            <h1>Customer Support Page</h1>
-            <form method="POST" action="">
-            	<label for="Title">Title</label><br>
-            	<input type="text" id="Subject" name="title" placeholder="Type here" required><br><br>
-            	<label for="Body">Body</label><br>
-            	<textarea id="content" name="content" rows="8" cols="80"placeholder="Type here" required></textarea><br><br>
-            	<input type="submit" value="Submit" name="submit">
-        	</form>
-        </div>
+			<h1>Active tickets</h1>
+
+			<%
+				ArrayList<Ticket> open = Ticket.getTickets(false);
+				for (Ticket t : open) {
+					t.print(out);
+				}
+			%>
+
+			<h1>Resolved tickets</h1>
+			<%
+				ArrayList<Ticket> closed = Ticket.getTickets(true);
+				for (Ticket t : closed) {
+					t.print(out);
+				}
+			%>
+
+		</div>
 	</body>
 </html>

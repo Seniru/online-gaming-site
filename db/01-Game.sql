@@ -19,8 +19,8 @@ CREATE TABLE  `Category` (
 );
 
 CREATE TABLE `GameCategory` (
-     `Cname` VARCHAR(10) PRIMARY KEY,
-     `Title` VARCHAR(10),
+     `Cname` VARCHAR(20) PRIMARY KEY,
+     `Title` VARCHAR(30),
      FOREIGN KEY (`Cname`) REFERENCES `Category` (`Cname`),
      FOREIGN KEY (`Title`) REFERENCES `Game` (`Gtitle`)
 );

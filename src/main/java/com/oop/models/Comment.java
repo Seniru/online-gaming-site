@@ -10,7 +10,7 @@ public class Comment implements Persistable, Printable {
 
     public Comment(int commentID, String gtitle, String body) {
 
-        this.catommentID = commentID;
+        this.commentID = commentID;
         this.gtitle = gtitle;
         this.body = body;
     }

@@ -1,0 +1,17 @@
+.ticket {
+	display: flex;
+	align-items: center;
+}
+
+.ticket > div:first-child {
+	display: grid;
+	width: 10%;
+}
+
+.ticket > h1 {
+	width: 80%;
+}
+
+.ticket > div:last-child {
+	color: var(--secondary-text-color);
+}

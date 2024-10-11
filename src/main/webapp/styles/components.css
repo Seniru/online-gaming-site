@@ -219,6 +219,10 @@ select:active {
 	background-image: url("../images/angle-up-solid.svg");
 }
 
+textarea {
+	background-color: var(--input-color);
+	color: var(--text-color);
+}
 
 .secondary-info {
 	color: var(--secondary-text-color);

@@ -7,11 +7,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
 
 import com.oop.models.Ticket;
 import com.oop.models.RegisteredUser;
 
-@WebServlet("/Ticket")
+@WebServlet("/tickets")
 public class TicketController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -22,22 +23,35 @@ public class TicketController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+        int id = -1;
+        
+
+        if (request.getParameter("id") != null) {
+            id = Integer.parseInt(request.getParameter("id"));
+        }
+
+        if (id == -1) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/view-tickets.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                "/pages/view-ticket.jsp?"
+                + request.getParameter("id")
+            );
+            dispatcher.forward(request, response);
+        } 
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Ticket newTicket =
-                new Ticket(
-                        0,
-                        request.getParameter("Title"),
-                        request.getParameter("Body"),
-                        (RegisteredUser) request.getSession().getAttribute("user"));
+        int id = Integer.parseInt(request.getParameter("id"));
+        Ticket t = Ticket.fromTicketID(id);
+        t.resolve();
 
-        newTicket.save();
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/view-ticket.jsp?" + id);
+        dispatcher.forward(request, response);
+
     }
 }
