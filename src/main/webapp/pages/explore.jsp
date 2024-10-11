@@ -18,6 +18,8 @@
 		loggedIn = true;
 		user = (RegisteredUser) session.getAttribute("user");
 	}
+
+	String query = request.getParameter("query");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -70,7 +72,7 @@
     </aside>
 	<div class="wrapper">
 		<h3>Search For Games</h3>
-		<input id="game-search" type="search" placeholder="Search..." value="<% out.write(request.getParameter("query")); %>">
+		<input id="game-search" type="search" placeholder="Search..." value="<% out.write(query == null ? "" : query); %>">
         <button id="Gobutton">GO</button>
 		<br><br>
 		<%

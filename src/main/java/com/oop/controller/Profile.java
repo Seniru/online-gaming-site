@@ -26,6 +26,9 @@ public class Profile extends HttpServlet {
 
         if ("save-game".equals(request.getParameter("action"))) {
             saveGame(request, response);
+        } else if ("Become a pro!".equals(request.getParameter("action"))) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/payment.jsp");
+            dispatcher.forward(request, response);
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile.jsp");
             dispatcher.forward(request, response);
@@ -40,7 +43,8 @@ public class Profile extends HttpServlet {
                 case "Delete account":
                     delete(request, response);
                     break;
-                case "Become a pro!":
+                case "become-pro":
+                    becomePro(request, response);
                     break;
                 case "Become a developer":
                     becomeDeveloper(request, response);
@@ -84,6 +88,23 @@ public class Profile extends HttpServlet {
         RegisteredUser user = (RegisteredUser) session.getAttribute("user");
 
         user.becomeDeveloper();
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile.jsp");
+        dispatcher.forward(request, response);
+
+    }
+
+    protected void becomePro(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        RegisteredUser user = (RegisteredUser) session.getAttribute("user");
+    
+        user.becomePro();
+    
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile.jsp");
+        dispatcher.forward(request, response);
+        
     }
 
     protected void saveGame(HttpServletRequest request, HttpServletResponse response)

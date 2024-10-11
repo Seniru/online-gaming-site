@@ -10,6 +10,8 @@
 	}
 
 	RegisteredUser profileUser = (RegisteredUser) session.getAttribute("user");
+	// load user from database to index all the properties
+	profileUser.load();
 	
 %>
 
@@ -34,9 +36,12 @@
 				<img src="images/user-solid.svg">
 				<div>
 					<h1><% out.print(profileUser.getUsername()); %></h1>
-					<span class="badge staff">Staff</span>
-					<span class="badge pro">Pro</span>
-					<span class="badge dev">Developer</span>
+					<% if (profileUser.isPro()) { %>
+						<span class="badge pro">Pro</span>
+					<% } %>
+					<% if (profileUser.isDev()) { %>
+						<span class="badge dev">Developer</span>
+					<% } %>
 				</div>
 			</div>
 			<br>
@@ -68,8 +73,12 @@
 		%>
 
 		</section>
+		<% if (profileUser.isDev()) { %>
 		<section class="pro-section">
-			<h2> Developed Games</h2>
+			<div style="display: flex;align-items: center;justify-content: space-between;">
+				<h2>Developed Games</h2>
+				<a href="upload"><button>Upload game</button></a>
+			</div>
 			<div class="game container">
 					<img src="../images/game.avif">
 				<span>Title</span>
@@ -92,6 +101,7 @@
 			</div>
 
 		</section>
+		<% } %>
 	
 		</div>
 		<br>
@@ -115,12 +125,14 @@
 		</div>
 		<div class="wrapper" id="extra">
 			<h1>Extra actions</h1>
-			<form method="POST" action="">
+			<form method="GET" action="">
 				<input type="submit" name="action" value="Become a pro!">
 			</form>
+			<% if (!profileUser.isDev()) { %>
 			<form method="POST" action="">
 				<input type="submit" name="action" value="Become a developer">
 			</form>
+			<% } %>
 			<form method="POST" action="">
 				<input type="submit" name="action" value="Delete account" style="background-color: #F44336;">
 			</form>

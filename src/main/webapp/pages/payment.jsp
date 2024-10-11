@@ -9,8 +9,8 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">		<link rel="stylesheet" href="../styles/components.css">
-		<link rel="stylesheet" href="../styles/components.css">
-		<link rel="stylesheet" href="../styles/payment.css">
+		<link rel="stylesheet" href="styles/components.css">
+		<link rel="stylesheet" href="styles/payment.css">
 		<!--font awesome-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
 		<title>Components</title>
@@ -19,7 +19,7 @@
 		<div class="wrapper">
 		 <br>
         <h1>PAYMENT AND CONFIRMATION</h1>
-        <form class="container" method="POST" action="" onsubmit="return validate()">
+        <form class="container" method="POST" action="profile">
 
             <br>
             <h2 id="caption"> Card Details </h2>
@@ -58,7 +58,8 @@
             I Agree to terms and conditions <a href="policy.php">Terms of use</a>
 
             <br><br>
-            <input id="bank_confirm" type="submit" name="payment" value="Confirm Payment">
+            <input type="text" name="action" value="become-pro" hidden readonly>
+            <input id="bank_confirm" type="submit" value="Confirm Payment">
 
         </form>
 		</div>

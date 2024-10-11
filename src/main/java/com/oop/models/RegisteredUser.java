@@ -112,7 +112,7 @@ public class RegisteredUser extends BaseUser {
     public void becomeDeveloper() {
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO DevUser (?)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO DevUser VALUES (?)");
             stmt.setString(1, username);
             stmt.executeUpdate();
 
@@ -120,6 +120,19 @@ public class RegisteredUser extends BaseUser {
             System.out.println(e);
         }
     }
+
+    public void becomePro() {
+        try {
+            Connection conn = DBConn.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO ProUser VALUES (?)");
+            stmt.setString(1, username);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
 
     public Ticket createTicket(String title, String body) {
         try {
@@ -224,11 +237,12 @@ public class RegisteredUser extends BaseUser {
             ResultSet res = stmt.executeQuery();
             ResultSet proRes = proStmt.executeQuery();
             ResultSet devRes = devStmt.executeQuery();
+            res.next();
 
             this.username = res.getString("Username");
             this.password = res.getString("Password");
             this.email = res.getString("Email");
-            this.profilePicture = res.getString("ProfilePicture");
+            this.profilePicture = "";
             this.pro = proRes.next();
             this.dev = devRes.next();
         } catch (SQLException e) {
