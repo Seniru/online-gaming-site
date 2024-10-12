@@ -56,7 +56,6 @@ public class Profile extends HttpServlet {
         } else if (request.getParameter("update") != null) {
             updateProfile(request, response);
         } else {
-            response.getWriter().write("ooooo");
             response.getWriter().write(Collections.list(request.getAttributeNames()).toString());
         }
     }

@@ -214,13 +214,38 @@ public class RegisteredUser extends BaseUser {
 
     @Override
     public void delete() {
+        PreparedStatement pstmt = null;
+        Connection conn = null;
         try {
-            Connection conn = DBConn.getConnection();
-            PreparedStatement userDeleteStmt =
-                    conn.prepareStatement("DELETE FROM User WHERE Username = ?");
-            userDeleteStmt.setString(1, username);
-            userDeleteStmt.executeUpdate();
+            conn = DBConn.getConnection();
+            conn.setAutoCommit(false);
+
+            String queries[] = {
+                "UPDATE UserComment SET `Username` = 'Deleted User' WHERE `Username` = ?",
+                "UPDATE Game SET DeveloperName = 'Deleted User' WHERE `DeveloperName` = ?",
+                "DELETE FROM Ticket WHERE `Username` = ?",
+                "DELETE FROM ProUser WHERE `Username` = ?",
+                "DELETE FROM DevUser WHERE `Username` = ?",
+                "DELETE FROM Play WHERE `Username` = ?",
+                "DELETE FROM Favourites WHERE `Username` = ?",
+                "DELETE FROM User WHERE `Username` = ?"
+            };
+
+            for (String query : queries) {
+                pstmt = conn.prepareStatement(query);
+                pstmt.setString(1, username);
+                pstmt.executeUpdate();
+            }
+
+            conn.commit();
         } catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
             System.out.println(e);
         }
     }
