@@ -133,11 +133,13 @@ public class RegisteredUser extends BaseUser {
         }
     }
 
-
     public Ticket createTicket(String title, String body) {
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Ticket (Title, Body, Username, CreatedDate) VALUES (?, ?, ?, NOW())");
+            PreparedStatement stmt =
+                    conn.prepareStatement(
+                            "INSERT INTO Ticket (Title, Body, Username, CreatedDate) VALUES (?, ?,"
+                                + " ?, NOW())");
             stmt.setString(1, title);
             stmt.setString(2, body);
             stmt.setString(3, this.username);
@@ -160,14 +162,17 @@ public class RegisteredUser extends BaseUser {
     public void postComment(Game game, String body) {
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement countStmt = conn.prepareStatement("SELECT COUNT(*) FROM Comment WHERE Gtitle = ?");
+            PreparedStatement countStmt =
+                    conn.prepareStatement("SELECT COUNT(*) FROM Comment WHERE Gtitle = ?");
             countStmt.setString(1, game.getTitle());
             ResultSet countRes = countStmt.executeQuery();
             countRes.next();
             int commentCount = countRes.getInt(1);
 
-            PreparedStatement cmm = conn.prepareStatement("INSERT INTO Comment VALUES (?, ?, ?, NOW())");
-            PreparedStatement ucmm = conn.prepareStatement("INSERT INTO UserComment VALUES (?, ?, ?)");
+            PreparedStatement cmm =
+                    conn.prepareStatement("INSERT INTO Comment VALUES (?, ?, ?, NOW())");
+            PreparedStatement ucmm =
+                    conn.prepareStatement("INSERT INTO UserComment VALUES (?, ?, ?)");
             cmm.setInt(1, commentCount + 1);
             cmm.setString(2, game.getTitle());
             cmm.setString(3, body);
@@ -186,8 +191,10 @@ public class RegisteredUser extends BaseUser {
         try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE Username = ?");
-            PreparedStatement proStmt = conn.prepareStatement("SELECT * FROM ProUser WHERE Username = ?");
-            PreparedStatement devStmt = conn.prepareStatement("SELECT * FROM DevUser WHERE Username = ?");
+            PreparedStatement proStmt =
+                    conn.prepareStatement("SELECT * FROM ProUser WHERE Username = ?");
+            PreparedStatement devStmt =
+                    conn.prepareStatement("SELECT * FROM DevUser WHERE Username = ?");
             stmt.setString(1, username);
             proStmt.setString(1, username);
             devStmt.setString(1, username);
@@ -255,8 +262,10 @@ public class RegisteredUser extends BaseUser {
         try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE username = ?");
-            PreparedStatement proStmt = conn.prepareStatement("SELECT * FROM ProUser WHERE username = ?");
-            PreparedStatement devStmt = conn.prepareStatement("SELECT * FROM DevUser WHERE username = ?");
+            PreparedStatement proStmt =
+                    conn.prepareStatement("SELECT * FROM ProUser WHERE username = ?");
+            PreparedStatement devStmt =
+                    conn.prepareStatement("SELECT * FROM DevUser WHERE username = ?");
             stmt.setString(1, username);
             proStmt.setString(1, username);
             devStmt.setString(1, username);

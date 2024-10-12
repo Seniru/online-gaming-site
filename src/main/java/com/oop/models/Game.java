@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.sql.*;
 
 import com.oop.utils.DBConn;
-import com.oop.models.RegisteredUser;
 
 public class Game extends GameBase {
 
@@ -139,7 +138,8 @@ public class Game extends GameBase {
 
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game WHERE NOT IsPro AND Gtitle LIKE ?");
+            PreparedStatement stmt =
+                    conn.prepareStatement("SELECT * FROM Game WHERE NOT IsPro AND Gtitle LIKE ?");
             stmt.setString(1, "%" + query + "%");
             ResultSet res = stmt.executeQuery();
 
@@ -161,7 +161,6 @@ public class Game extends GameBase {
             System.out.println(e);
             return null;
         }
-
     }
 
     public static ArrayList<Game> getGamesFrom(RegisteredUser user) {
@@ -169,7 +168,8 @@ public class Game extends GameBase {
 
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game WHERE DeveloperName = ?");
+            PreparedStatement stmt =
+                    conn.prepareStatement("SELECT * FROM Game WHERE DeveloperName = ?");
             stmt.setString(1, user.getUsername());
             ResultSet res = stmt.executeQuery();
 
@@ -202,7 +202,8 @@ public class Game extends GameBase {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt =
                     conn.prepareStatement(
-                            "REPLACE INTO Game (Gtitle, Image, URL, Description, DeveloperName) VALUES (?, ?, ?, ?, ?)");
+                            "REPLACE INTO Game (Gtitle, Image, URL, Description, DeveloperName)"
+                                + " VALUES (?, ?, ?, ?, ?)");
             stmt.setString(1, this.title);
             stmt.setString(2, this.image);
             stmt.setString(3, this.url);
@@ -263,5 +264,4 @@ public class Game extends GameBase {
             System.out.println(e);
         }
     }
-
 }

@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.oop.utils.DBConn;
-import com.oop.models.RegisteredUser;
 
 public class Ticket implements Persistable, Printable {
 
@@ -17,7 +16,13 @@ public class Ticket implements Persistable, Printable {
     private String createdDate;
     private boolean closed;
 
-    public Ticket(int ticketID, String title, String body, RegisteredUser user, String createdDate, boolean closed) {
+    public Ticket(
+            int ticketID,
+            String title,
+            String body,
+            RegisteredUser user,
+            String createdDate,
+            boolean closed) {
         this.ticketID = ticketID;
         this.title = title;
         this.body = body;
@@ -90,7 +95,8 @@ public class Ticket implements Persistable, Printable {
 
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Ticket WHERE Resolved = ?");
+            PreparedStatement stmt =
+                    conn.prepareStatement("SELECT * FROM Ticket WHERE Resolved = ?");
             stmt.setBoolean(1, resolved);
             ResultSet res = stmt.executeQuery();
 
@@ -118,15 +124,20 @@ public class Ticket implements Persistable, Printable {
     public void print(Writer out) {
         try {
             out.write(
-			    "<div class=\"container ticket\">"
-				+ "<div>"
-				+ "<img class='profile-image' src='images/user-solid.svg'>"
-				+ user.getUsername()
-				+ "</div>"
-				+ "<h1><a href='./tickets?id=" + ticketID + "'>" + title + "</a></h1>"
-				+ "<div>" + createdDate + "</div>"
-			    + "</div>"
-            );
+                    "<div class=\"container ticket\">"
+                            + "<div>"
+                            + "<img class='profile-image' src='images/user-solid.svg'>"
+                            + user.getUsername()
+                            + "</div>"
+                            + "<h1><a href='./tickets?id="
+                            + ticketID
+                            + "'>"
+                            + title
+                            + "</a></h1>"
+                            + "<div>"
+                            + createdDate
+                            + "</div>"
+                            + "</div>");
 
         } catch (IOException e) {
             System.out.println(e);
@@ -137,7 +148,8 @@ public class Ticket implements Persistable, Printable {
     public void load() {
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Ticket WHERE TicketID = ?");
+            PreparedStatement stmt =
+                    conn.prepareStatement("SELECT * FROM Ticket WHERE TicketID = ?");
             stmt.setInt(1, this.ticketID);
             ResultSet res = stmt.executeQuery();
             res.next();
@@ -155,7 +167,8 @@ public class Ticket implements Persistable, Printable {
     public void save() {
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("REPLACE INTO Ticket VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt =
+                    conn.prepareStatement("REPLACE INTO Ticket VALUES (?, ?, ?, ?, ?, ?)");
             stmt.setInt(1, this.ticketID);
             stmt.setString(2, this.title);
             stmt.setString(3, this.body);
@@ -179,5 +192,4 @@ public class Ticket implements Persistable, Printable {
             System.out.println(e);
         }
     }
-
 }
