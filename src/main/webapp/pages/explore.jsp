@@ -141,7 +141,11 @@
 
 		</section>
 		<% } else {
-			ArrayList<Game> games = Game.searchGames(request.getParameter("query"), new ArrayList<Category>());
+			ArrayList<Category> cats = new ArrayList<Category>();
+			for (String c : categoryList) {
+				cats.add(Category.fromCname(c));
+			}
+			ArrayList<Game> games = Game.searchGames(request.getParameter("query"), cats);
 			for (Game game : games) {				
 				game.print(out);
 			}

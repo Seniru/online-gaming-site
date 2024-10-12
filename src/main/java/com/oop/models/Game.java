@@ -138,10 +138,24 @@ public class Game extends GameBase {
 
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt =
-                    conn.prepareStatement("SELECT * FROM Game WHERE NOT IsPro AND Gtitle LIKE ?");
-            stmt.setString(1, "%" + query + "%");
-            ResultSet res = stmt.executeQuery();
+            Statement stmt = conn.createStatement();
+            String subq = "SELECT DISTINCT Title FROM GameCategory";
+            String sql = null;
+            
+            if (categories.size() > 0) {
+                subq += " WHERE (";
+                int categorySize = categories.size();
+                for (int i = 0; i < categorySize; i++) {
+                    subq += "Cname = '" + categories.get(i).getCname() + "'";
+                    if ((i + 1) < categorySize) subq += " OR ";
+                }
+                subq += ")";
+                sql = "SELECT * FROM (" + subq + " ) AS f INNER JOIN Game g ON f.Title = g.Gtitle WHERE Gtitle LIKE '%" + (query == null ? "" : query) + "%'";
+            } else {
+                sql = "SELECT * FROM Game WHERE NOT IsPro AND Gtitle LIKE '%" + (query == null ? "" : query) + "%'";
+            }
+            System.out.println(sql);
+            ResultSet res = stmt.executeQuery(sql);
 
             while (res.next()) {
                 Game rgame =
