@@ -1,7 +1,6 @@
 package com.oop.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
 import com.oop.models.Ticket;
-import com.oop.models.RegisteredUser;
 
 @WebServlet("/tickets")
 public class TicketController extends HttpServlet {
@@ -24,7 +22,6 @@ public class TicketController extends HttpServlet {
             throws ServletException, IOException {
 
         int id = -1;
-        
 
         if (request.getParameter("id") != null) {
             id = Integer.parseInt(request.getParameter("id"));
@@ -34,13 +31,11 @@ public class TicketController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/view-tickets.jsp");
             dispatcher.forward(request, response);
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher(
-                "/pages/view-ticket.jsp?"
-                + request.getParameter("id")
-            );
+            RequestDispatcher dispatcher =
+                    request.getRequestDispatcher(
+                            "/pages/view-ticket.jsp?" + request.getParameter("id"));
             dispatcher.forward(request, response);
-        } 
-
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -57,6 +52,5 @@ public class TicketController extends HttpServlet {
             t.delete();
             response.sendRedirect("tickets");
         }
-
     }
 }

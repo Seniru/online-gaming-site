@@ -46,7 +46,6 @@ public class ProGame extends GameBase {
         }
     }
 
-
     @Override
     public void load() {
         // TODO Auto-generated method stub
@@ -64,7 +63,6 @@ public class ProGame extends GameBase {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
-
 
     @Override
     public void print(Writer out) {

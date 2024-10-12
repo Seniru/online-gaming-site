@@ -1,7 +1,6 @@
 package com.oop.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,15 +24,14 @@ public class Support extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/support.jsp");
         dispatcher.forward(request, response);
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-			RegisteredUser user = (RegisteredUser) request.getSession().getAttribute("user");
-			Ticket ticket = user.createTicket(request.getParameter("title"), request.getParameter("content"));
-            response.sendRedirect("tickets?id=" + ticket.getTicketID());
-			
+        RegisteredUser user = (RegisteredUser) request.getSession().getAttribute("user");
+        Ticket ticket =
+                user.createTicket(request.getParameter("title"), request.getParameter("content"));
+        response.sendRedirect("tickets?id=" + ticket.getTicketID());
     }
 }

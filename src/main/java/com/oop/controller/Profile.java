@@ -91,7 +91,6 @@ public class Profile extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile.jsp");
         dispatcher.forward(request, response);
-
     }
 
     protected void becomePro(HttpServletRequest request, HttpServletResponse response)
@@ -99,12 +98,11 @@ public class Profile extends HttpServlet {
 
         HttpSession session = request.getSession();
         RegisteredUser user = (RegisteredUser) session.getAttribute("user");
-    
+
         user.becomePro();
-    
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile.jsp");
         dispatcher.forward(request, response);
-        
     }
 
     protected void saveGame(HttpServletRequest request, HttpServletResponse response)

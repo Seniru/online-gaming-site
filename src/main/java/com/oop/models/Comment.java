@@ -64,25 +64,25 @@ public class Comment implements Persistable, Printable {
     }
 
     public static ArrayList<Comment> getComments(GameBase game) {
-        String sql = "SELECT * FROM UserComment uc, Comment c, User u"
-            + " WHERE c.CommentId = uc.commentId AND c.Gtitle = uc.Gtitle AND u.Username = uc.Username"
-            + " AND c.Gtitle = ?";
-        
+        String sql =
+                "SELECT * FROM UserComment uc, Comment c, User u WHERE c.CommentId = uc.commentId"
+                    + " AND c.Gtitle = uc.Gtitle AND u.Username = uc.Username AND c.Gtitle = ?";
+
         ArrayList<Comment> comments = new ArrayList<Comment>();
-        
+
         try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, game.getTitle());
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
-                comments.add(new Comment(
-                    res.getInt("CommentId"),
-                    Game.fromTitle(res.getString("Gtitle")),
-                    res.getString("Body"),
-                    RegisteredUser.fromUsername(res.getString("Username")),
-                    res.getString("PostedDate")
-                ));
+                comments.add(
+                        new Comment(
+                                res.getInt("CommentId"),
+                                Game.fromTitle(res.getString("Gtitle")),
+                                res.getString("Body"),
+                                RegisteredUser.fromUsername(res.getString("Username")),
+                                res.getString("PostedDate")));
             }
             return comments;
         } catch (SQLException e) {
@@ -95,15 +95,18 @@ public class Comment implements Persistable, Printable {
     public void print(Writer out) {
         try {
             out.write(
-                "<div class=\"comment container\">"
-                + "<div>"
-                + "<img class='profile-image' src='images/user-solid.svg'><br>"
-                + this.user.getUsername()
-                + "</div>"
-                + "<p>" + this.body + "</p>"
-                + "<span>" + this.postedDate + "</span>"
-                + "</div>"
-            );    
+                    "<div class=\"comment container\">"
+                            + "<div>"
+                            + "<img class='profile-image' src='images/user-solid.svg'><br>"
+                            + this.user.getUsername()
+                            + "</div>"
+                            + "<p>"
+                            + this.body
+                            + "</p>"
+                            + "<span>"
+                            + this.postedDate
+                            + "</span>"
+                            + "</div>");
         } catch (IOException e) {
             System.out.println(e);
         }
@@ -112,10 +115,11 @@ public class Comment implements Persistable, Printable {
     @Override
     public void load() {
         try {
-            String sql = "SELECT * FROM UserComment uc, Comment c, User u"
-            + " WHERE c.CommentId = uc.commentId AND c.Gtitle = uc.Gtitle AND u.Username = uc.Username"
-            + " AND c.Gtitle = ? AND c.CommentId = ?";
-            
+            String sql =
+                    "SELECT * FROM UserComment uc, Comment c, User u WHERE c.CommentId ="
+                        + " uc.commentId AND c.Gtitle = uc.Gtitle AND u.Username = uc.Username AND"
+                        + " c.Gtitle = ? AND c.CommentId = ?";
+
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, game.getTitle());
@@ -125,7 +129,7 @@ public class Comment implements Persistable, Printable {
                 this.body = res.getString("Body");
                 this.user = RegisteredUser.fromUsername(res.getString("Username"));
                 this.postedDate = res.getString("PostedDate");
-            }            
+            }
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -141,8 +145,11 @@ public class Comment implements Persistable, Printable {
     public void delete() {
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt1 = conn.prepareStatement("DELETE FROM UserComment WHERE Gtitle = ? AND CommentId = ?");
-            PreparedStatement stmt2 = conn.prepareStatement("DELETE FROM Comment WHERE Gtitle = ? AND CommentId = ?");
+            PreparedStatement stmt1 =
+                    conn.prepareStatement(
+                            "DELETE FROM UserComment WHERE Gtitle = ? AND CommentId = ?");
+            PreparedStatement stmt2 =
+                    conn.prepareStatement("DELETE FROM Comment WHERE Gtitle = ? AND CommentId = ?");
             stmt1.setString(1, this.game.getTitle());
             stmt1.setInt(2, this.commentID);
             stmt2.setString(1, this.game.getTitle());
@@ -153,5 +160,4 @@ public class Comment implements Persistable, Printable {
             System.out.println();
         }
     }
-
 }
