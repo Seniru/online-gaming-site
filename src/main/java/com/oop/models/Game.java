@@ -141,7 +141,7 @@ public class Game extends GameBase {
             Statement stmt = conn.createStatement();
             String subq = "SELECT DISTINCT Title FROM GameCategory";
             String sql = null;
-            
+
             if (categories.size() > 0) {
                 subq += " WHERE (";
                 int categorySize = categories.size();
@@ -150,9 +150,18 @@ public class Game extends GameBase {
                     if ((i + 1) < categorySize) subq += " OR ";
                 }
                 subq += ")";
-                sql = "SELECT * FROM (" + subq + " ) AS f INNER JOIN Game g ON f.Title = g.Gtitle WHERE Gtitle LIKE '%" + (query == null ? "" : query) + "%'";
+                sql =
+                        "SELECT * FROM ("
+                                + subq
+                                + " ) AS f INNER JOIN Game g ON f.Title = g.Gtitle WHERE Gtitle"
+                                + " LIKE '%"
+                                + (query == null ? "" : query)
+                                + "%'";
             } else {
-                sql = "SELECT * FROM Game WHERE NOT IsPro AND Gtitle LIKE '%" + (query == null ? "" : query) + "%'";
+                sql =
+                        "SELECT * FROM Game WHERE NOT IsPro AND Gtitle LIKE '%"
+                                + (query == null ? "" : query)
+                                + "%'";
             }
             System.out.println(sql);
             ResultSet res = stmt.executeQuery(sql);
