@@ -66,7 +66,7 @@ public class Comment implements Persistable, Printable {
     public static ArrayList<Comment> getComments(GameBase game) {
         String sql =
                 "SELECT * FROM UserComment uc, Comment c, User u WHERE c.CommentId = uc.commentId"
-                    + " AND c.Gtitle = uc.Gtitle AND u.Username = uc.Username AND c.Gtitle = ?";
+                        + " AND c.Gtitle = uc.Gtitle AND u.Username = uc.Username AND c.Gtitle = ?";
 
         ArrayList<Comment> comments = new ArrayList<Comment>();
 

@@ -139,7 +139,7 @@ public class RegisteredUser extends BaseUser {
             PreparedStatement stmt =
                     conn.prepareStatement(
                             "INSERT INTO Ticket (Title, Body, Username, CreatedDate) VALUES (?, ?,"
-                                + " ?, NOW())");
+                                    + " ?, NOW())");
             stmt.setString(1, title);
             stmt.setString(2, body);
             stmt.setString(3, this.username);

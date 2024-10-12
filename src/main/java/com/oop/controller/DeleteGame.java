@@ -1,7 +1,6 @@
 package com.oop.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,11 +20,9 @@ public class DeleteGame extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-		String title = request.getParameter("title");
-		Game game = Game.fromTitle(title);
-		game.delete();
-		response.sendRedirect("profile");
-
-	}
-
+        String title = request.getParameter("title");
+        Game game = Game.fromTitle(title);
+        game.delete();
+        response.sendRedirect("profile");
+    }
 }

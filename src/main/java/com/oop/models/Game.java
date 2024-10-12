@@ -203,7 +203,7 @@ public class Game extends GameBase {
             PreparedStatement stmt =
                     conn.prepareStatement(
                             "REPLACE INTO Game (Gtitle, Image, URL, Description, DeveloperName)"
-                                + " VALUES (?, ?, ?, ?, ?)");
+                                    + " VALUES (?, ?, ?, ?, ?)");
             stmt.setString(1, this.title);
             stmt.setString(2, this.image);
             stmt.setString(3, this.url);
