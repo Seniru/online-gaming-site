@@ -48,7 +48,7 @@
 					<i class="fa-brands fa-facebook"></i>
 					<i class="fa-brands fa-google"></i>
 					<br><br>
-					Not a member? <a href="signup.php">Sign up</a>
+					Not a member? <a href="signup">Sign up</a>
 					<br><br>
 				</div>		
 			</body>

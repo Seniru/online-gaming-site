@@ -15,7 +15,7 @@
 		<title>Sign up</title>
 	</head>
 	<body class="wrapper">
-		<a href="./">&lt; Go back</a>
+		<a href="explore">&lt; Go back</a>
 		<form id="signup-form" class="container" method="POST" action="">
 			<h1>Create an account...</h1>
 			<div id="signup-options">

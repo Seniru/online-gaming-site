@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="styles/payment.css">
 		<!--font awesome-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
-		<title>Components</title>
+		<title>Payment</title>
 	</head>
 	<body>
 		<div class="wrapper">
