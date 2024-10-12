@@ -246,15 +246,19 @@ public class Game extends GameBase {
     public void delete() {
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(
-                "DELETE FROM Play WHERE Gtitle = ?;"
-                + "DELETE FROM Favourites WHERE Gtitle = ?;"
-                + "DELETE FROM GameCategory WHERE Title = ?;"
-                + "DELETE FROM UserComment WHERE Gtitle = ?;"
-                + "DELETE FROM Comment WHERE Gtitle = ?;"
-            );
-            for (int i = 1; i <= 5; i++) stmt.setString(i, title);
-            stmt.executeUpdate();
+            Statement stmt = conn.createStatement();
+            String queries[] = {
+                "DELETE FROM Play WHERE Gtitle = ",
+                "DELETE FROM Favourites WHERE Gtitle = ",
+                "DELETE FROM GameCategory WHERE Title = ",
+                "DELETE FROM UserComment WHERE Gtitle = ",
+                "DELETE FROM Comment WHERE Gtitle = ",
+                "DELETE FROM Game WHERE Gtitle = "
+            };
+            for (String query : queries) {
+                stmt.executeUpdate(query + "'" + title + "'");
+                System.out.println(query + "'" + title + "'");
+            }
         } catch (SQLException e) {
             System.out.println(e);
         }

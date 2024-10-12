@@ -117,9 +117,11 @@
 		</div>
 		<div class="wrapper" id="extra">
 			<h1>Extra actions</h1>
+			<% if (!profileUser.isPro()) { %>
 			<form method="GET" action="">
 				<input type="submit" name="action" value="Become a pro!">
 			</form>
+			<% } %>
 			<% if (!profileUser.isDev()) { %>
 			<form method="POST" action="">
 				<input type="submit" name="action" value="Become a developer">
