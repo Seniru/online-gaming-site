@@ -26,8 +26,16 @@ public class Game extends GameBase {
         try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game WHERE Gtitle = ?");
+            PreparedStatement catStmt = conn.prepareStatement("SELECT * FROM GameCategory WHERE Title = ?");
+            catStmt.setString(1, title);
             stmt.setString(1, title);
+            ResultSet cats = catStmt.executeQuery();
             ResultSet res = stmt.executeQuery();
+
+            ArrayList<Category> categories = new ArrayList<Category>();
+            while (cats.next()) {
+                categories.add(Category.fromCname(cats.getString("Cname")));
+            }
 
             if (res.next()) {
                 return new Game(
@@ -35,7 +43,7 @@ public class Game extends GameBase {
                         res.getString("Description"),
                         res.getString("Image"),
                         res.getString("Url"),
-                        new ArrayList<Category>(),
+                        categories,
                         null);
             }
             return null;

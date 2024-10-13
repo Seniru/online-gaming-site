@@ -2,6 +2,7 @@
 <%@ page import="com.oop.models.Game" %>
 <%@ page import="com.oop.models.RegisteredUser" %>
 <%@ page import="com.oop.models.Comment" %>
+<%@ page import="com.oop.models.Category" %>
 
 <% 
 	String title = request.getParameter("title");
@@ -34,36 +35,32 @@
 	<body>
 		<jsp:include page="./views/header.jsp" />
 		<div class="wrapper">
-			<div>
-			<div id="gamebox">
-				<embed type="text/html" src="<% out.print(game.getUrl());%> "width="860px" height="400px">
-			</div>	
-			<div id="title-row">
-				<h1><% out.print(game.getTitle());%></h1>
-				<div id="star">
-					<div>
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
-					</div>
-					<div id="heart" onclick="saveGame()">
-						<i class="fa-solid fa-heart"></i>
+			<div style="display: grid; justify-content: start;">
+				<div id="gamebox">
+					<embed type="text/html" src="<% out.print(game.getUrl());%> "width="1000px" height="500px">
+				</div>	
+				<div id="title-row">
+					<h1><% out.print(game.getTitle());%></h1>
+					<div id="star">
+						<div>
+						<i style="color: gold;" class="fa-solid fa-star"></i>
+						<i style="color: gold;" class="fa-solid fa-star"></i>
+						<i style="color: gold;" class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						</div>
+						<div style="cursor: pointer; color: #ac478a" id="heart" onclick="saveGame()">
+							<i class="fa-solid fa-heart"></i>
+						</div>
 					</div>
 				</div>
 			</div>
-			</div>
-		<div class="chip">
-			<i class="fa-solid fa-dice-three fa-lg"></i>
-			<div class="name-container">Category 1</div>
-		</div>
-		<div class="chip">
-			<i class="fa-solid fa-gamepad fa-lg" style="color: cornflowerblue;"></i>
-			<div class="name-container">Category 2</div>
-
-		</div>
+		<%
+			for (Category c : game.getCategories()) {
+				c.print(out);
+			}
+		%>
 		<p>
 			<% out.print(game.getDescription());%>
 		</p>
