@@ -75,7 +75,7 @@ public class Ticket implements Persistable, Printable {
         return user;
     }
 
-    public void setUsername(RegisteredUser user) {
+    public void setUser(RegisteredUser user) {
         this.user = user;
     }
 

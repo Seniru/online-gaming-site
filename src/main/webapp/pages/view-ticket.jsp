@@ -1,7 +1,41 @@
 <%@ page import="com.oop.models.Ticket" %>
+<%@ page import="com.oop.models.RegisteredUser" %>
+<%@ page import="com.oop.models.CustomerSupportAgent" %>
+
+<%
+	// authorization
+	
+	final boolean ANY_ACCESS = false;
+	final boolean USER_ACCESS = true;
+	final boolean AGENT_ACCESS = true;
+
+	String role = (String) session.getAttribute("role");
+
+	if (
+		(!ANY_ACCESS && role == null)
+		|| (!USER_ACCESS && role.equals("user"))
+		|| (!AGENT_ACCESS && role.equals("agent"))
+	) {
+		response.sendRedirect("explore");
+		return;
+	}
+
+	CustomerSupportAgent agent = null;
+	RegisteredUser user = null;
+	if (role.equals("user")) {
+		user = (RegisteredUser) session.getAttribute("user");
+	} else {
+		agent = (CustomerSupportAgent) session.getAttribute("agent");
+	}
+%>
+
 
 <%
   Ticket ticket = Ticket.fromTicketID(Integer.parseInt(request.getParameter("id")));
+  if (role.equals("user") && !ticket.getUser().getUsername().equals(user.getUsername())) {
+    response.sendRedirect("explore");
+		return;
+  }
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -50,7 +84,11 @@
             </p>
 
              <input type="submit" name="delete" value="Delete Ticket" style="float: right; margin: 3px; background-color: #F44336;">
-             <input type="submit" name="resolve" value="Resolve Ticket" style="float:right; margin: 3px;">
+             <%
+                if (role.equals("agent")) {
+              %>
+              <input type="submit" name="resolve" value="Resolve Ticket" style="float:right; margin: 3px;">
+              <% } %>
              <br><br>
            </form>
        

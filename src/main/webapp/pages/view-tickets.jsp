@@ -1,5 +1,34 @@
-<%@ page import="com.oop.models.Ticket" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.oop.models.Ticket" %>
+<%@ page import="com.oop.models.RegisteredUser" %>
+<%@ page import="com.oop.models.CustomerSupportAgent" %>
+
+<%
+	// authorization
+
+	final boolean ANY_ACCESS = false;
+	final boolean USER_ACCESS = true;
+	final boolean AGENT_ACCESS = true;
+
+	String role = (String) session.getAttribute("role");
+
+	if (
+		(!ANY_ACCESS && role == null)
+		|| (!USER_ACCESS && role.equals("user"))
+		|| (!AGENT_ACCESS && role.equals("agent"))
+	) {
+		response.sendRedirect("explore");
+		return;
+	}
+
+	CustomerSupportAgent agent = null;
+	RegisteredUser user = null;
+	if (role.equals("user")) {
+		user = (RegisteredUser) session.getAttribute("user");
+	} else {
+		agent = (CustomerSupportAgent) session.getAttribute("agent");
+	}
+%>
 
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -26,6 +55,7 @@
 			<%
 				ArrayList<Ticket> open = Ticket.getTickets(false);
 				for (Ticket t : open) {
+					if (role.equals("user") && !t.getUser().getUsername().equals(user.getUsername())) continue;
 					t.print(out);
 				}
 			%>
@@ -34,6 +64,7 @@
 			<%
 				ArrayList<Ticket> closed = Ticket.getTickets(true);
 				for (Ticket t : closed) {
+					if (role.equals("user") && !t.getUser().getUsername().equals(user.getUsername())) continue;
 					t.print(out);
 				}
 			%>

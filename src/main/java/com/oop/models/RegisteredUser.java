@@ -3,6 +3,9 @@ package com.oop.models;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 import com.oop.utils.DBConn;
 
@@ -217,6 +220,13 @@ public class RegisteredUser extends BaseUser {
             System.out.println(e);
             return null;
         }
+    }
+
+    @Override
+    public void onLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.getSession().setAttribute("user", this);
+        request.getSession().setAttribute("role", "user");
+        response.sendRedirect("explore");
     }
 
     @Override

@@ -1,18 +1,36 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.oop.models.RegisteredUser" %>
 <%@ page import="com.oop.models.Game" %>
+<%@ page import="com.oop.models.CustomerSupportAgent" %>
 
 <%
+	// authorization
 	
-	if (session.getAttribute("user") == null) {
+	final boolean ANY_ACCESS = false;
+	final boolean USER_ACCESS = true;
+	final boolean AGENT_ACCESS = false;
+
+	String role = (String) session.getAttribute("role");
+	RegisteredUser profileUser = null;
+
+	if (
+		(!ANY_ACCESS && role == null)
+		|| (!USER_ACCESS && role.equals("user"))
+		|| (!AGENT_ACCESS && role.equals("agent"))
+	) {
 		response.sendRedirect("explore");
 		return;
 	}
 
-	RegisteredUser profileUser = (RegisteredUser) session.getAttribute("user");
-	// load user from database to index all the properties
-	profileUser.load();
-	
+	CustomerSupportAgent agent = null;
+	RegisteredUser user = null;
+	if (role.equals("user")) {
+		user = (RegisteredUser) session.getAttribute("user");
+		user.load();
+		profileUser = user;
+	} else {
+		agent = (CustomerSupportAgent) session.getAttribute("agent");
+	}
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -117,6 +135,7 @@
 		</div>
 		<div class="wrapper" id="extra">
 			<h1>Extra actions</h1>
+			<a href="tickets"><button>View tickets</button></a>
 			<% if (!profileUser.isPro()) { %>
 			<form method="GET" action="">
 				<input type="submit" name="action" value="Become a pro!">

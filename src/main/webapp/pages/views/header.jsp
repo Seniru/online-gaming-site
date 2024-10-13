@@ -1,4 +1,6 @@
+<%@ page import="com.oop.models.BaseUser" %>
 <%@ page import="com.oop.models.RegisteredUser" %>
+<%@ page import="com.oop.models.CustomerSupportAgent" %>
 
 <header>
 	<script>
@@ -20,7 +22,8 @@
 	</nav>
 	<div id="profile-actions">
 		<%
-			RegisteredUser u = (RegisteredUser) session.getAttribute("user");
+			BaseUser u = (BaseUser) session.getAttribute("user");
+			String r = (String) session.getAttribute("role");
 			if (u != null) {
 		%>
 		<a href='logout'>
@@ -30,8 +33,8 @@
 			<img class='profile-image' src='images/user-solid.svg'>
 			<div id="profile-name">
 				<% out.print(u.getUsername()); %>
-				<button id='profile-dropdown' title="Profile">
-					<a href="profile">
+				<button id='profile-dropdown' title="<%= r.equals("user") ? "Profile" : "Tickets" %>">
+					<a href="<%= r.equals("user") ? "profile" : "tickets" %>">
 						<i class="fa-solid fa-chevron-right"></i>
 					</a>
 				</button>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
 import com.oop.models.RegisteredUser;
+import com.oop.models.CustomerSupportAgent;
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
@@ -32,6 +33,7 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
 
         RegisteredUser user = RegisteredUser.fromUsername(username);
+        CustomerSupportAgent agent = CustomerSupportAgent.fromUsername(username);
 
         if (user == null) {
             request.setAttribute("error", "Account not found");
@@ -39,8 +41,11 @@ public class Login extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             if (password.equals(user.getPassword())) {
-                request.getSession().setAttribute("user", user);
-                response.sendRedirect("explore");
+                if (agent != null) {
+                    agent.onLogin(request, response);
+                } else {
+                    user.onLogin(request, response);
+                }
             } else {
                 request.setAttribute("error", "Invalid password");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/login.jsp");

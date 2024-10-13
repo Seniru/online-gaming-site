@@ -1,5 +1,9 @@
 package com.oop.models;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 public abstract class BaseUser implements Persistable {
     protected String username;
     protected String password;
@@ -46,6 +50,7 @@ public abstract class BaseUser implements Persistable {
     }
 
     public abstract void delete();
+    public abstract void onLogin(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
     @Override
     public String toString() {

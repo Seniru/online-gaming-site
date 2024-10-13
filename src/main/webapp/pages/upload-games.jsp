@@ -3,7 +3,35 @@
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.oop.models.Category" %>
+<%@ page import="com.oop.models.RegisteredUser" %>
+<%@ page import="com.oop.models.CustomerSupportAgent" %>
 
+<%
+	// authorization
+	
+	final boolean ANY_ACCESS = false;
+	final boolean USER_ACCESS = true;
+	final boolean AGENT_ACCESS = false;
+
+	String role = (String) session.getAttribute("role");
+
+	if (
+		(!ANY_ACCESS && role == null)
+		|| (!USER_ACCESS && role.equals("user"))
+		|| (!AGENT_ACCESS && role.equals("agent"))
+	) {
+		response.sendRedirect("explore");
+		return;
+	}
+
+	CustomerSupportAgent agent = null;
+	RegisteredUser user = null;
+	if (role.equals("user")) {
+		user = (RegisteredUser) session.getAttribute("user");
+	} else {
+		agent = (CustomerSupportAgent) session.getAttribute("agent");
+	}
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
