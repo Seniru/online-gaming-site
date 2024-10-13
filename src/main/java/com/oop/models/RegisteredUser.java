@@ -223,7 +223,8 @@ public class RegisteredUser extends BaseUser {
     }
 
     @Override
-    public void onLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void onLogin(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
         request.getSession().setAttribute("user", this);
         request.getSession().setAttribute("role", "user");
         response.sendRedirect("explore");

@@ -50,7 +50,9 @@ public abstract class BaseUser implements Persistable {
     }
 
     public abstract void delete();
-    public abstract void onLogin(HttpServletRequest request, HttpServletResponse response) throws IOException;
+
+    public abstract void onLogin(HttpServletRequest request, HttpServletResponse response)
+            throws IOException;
 
     @Override
     public String toString() {
