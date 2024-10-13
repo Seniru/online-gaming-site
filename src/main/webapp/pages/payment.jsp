@@ -11,6 +11,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">		<link rel="stylesheet" href="../styles/components.css">
 		<link rel="stylesheet" href="styles/components.css">
 		<link rel="stylesheet" href="styles/payment.css">
+        <script src="scripts/payment.js"></script>
 		<!--font awesome-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
 		<title>Payment</title>
@@ -19,7 +20,7 @@
 		<div class="wrapper">
 		 <br>
         <h1>PAYMENT AND CONFIRMATION</h1>
-        <form class="container" method="POST" action="profile">
+        <form class="container" method="POST" action="profile" onsubmit="return validate()">
 
             <br>
             <h2 id="caption"> Card Details </h2>

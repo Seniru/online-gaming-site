@@ -14,9 +14,10 @@
 	final boolean AGENT_ACCESS = false;
 
 	String role = (String) session.getAttribute("role");
+	if (role == null) role = "unreg";
 
 	if (
-		(!ANY_ACCESS && role == null)
+		(!ANY_ACCESS && role.equals("unreg"))
 		|| (!USER_ACCESS && role.equals("user"))
 		|| (!AGENT_ACCESS && role.equals("agent"))
 	) {
@@ -52,15 +53,15 @@
 		<jsp:include page="./views/header.jsp" />
 		<div class="wrapper">
 			<h2>Upload games</h2>
-			<form method="POST" action="" class="container">
+			<form method="POST" action="" class="container" onsubmit="return validate(event)">
 				<fieldset>
 					<label>Title</label>
 					<br>
-					<input type="text" name="title" required>
+					<input id="title" type="text" name="title" required>
 					<br><br>
 					<label>Description</label>
 					<br>
-					<textarea name="description" cols="80" rows="10" required></textarea>
+					<textarea id="description" name="description" cols="80" rows="10" required></textarea>
 					<br><br>
 					<label>Categories</label>
 					<br>
@@ -97,7 +98,7 @@
 					</select>
 					<br><br>
 					<div id="upload-method">
-						<input name="url" type="text" placeholder="Enter link" required>
+						<input id="url" name="url" type="text" placeholder="Enter link" required>
 					</div>
 				</fieldset>
 				<input type="submit" name="submit" value="Submit">

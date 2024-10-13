@@ -14,8 +14,10 @@
 
 	String role = (String) session.getAttribute("role");
 
+	if (role == null) role = "unreg";
+
 	if (
-		(!ANY_ACCESS && role == null)
+		(!ANY_ACCESS && role.equals("unreg"))
 		|| (!USER_ACCESS && role.equals("user"))
 		|| (!AGENT_ACCESS && role.equals("agent"))
 	) {

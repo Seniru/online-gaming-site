@@ -12,9 +12,10 @@
 	final boolean AGENT_ACCESS = true;
 
 	String role = (String) session.getAttribute("role");
+	if (role == null) role = "unreg";
 
 	if (
-		(!ANY_ACCESS && role == null)
+		(!ANY_ACCESS && role.equals("unreg"))
 		|| (!USER_ACCESS && role.equals("user"))
 		|| (!AGENT_ACCESS && role.equals("agent"))
 	) {
@@ -41,13 +42,14 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">		<link rel="stylesheet" href="../styles/components.css">
 		<link rel="stylesheet" href="styles/components.css">
 		<link rel="stylesheet" href="styles/signup.css">
+		<script src="scripts/signup.js"></script>
 		<!--font awesome-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
 		<title>Sign up</title>
 	</head>
 	<body class="wrapper">
 		<a href="explore">&lt; Go back</a>
-		<form id="signup-form" class="container" method="POST" action="">
+		<form id="signup-form" class="container" method="POST" action="" onsubmit="return validate(event)">
 			<h1>Create an account...</h1>
 			<div id="signup-options">
 				<div id="signup-email-container">
@@ -56,7 +58,7 @@
 					<br>
 					Email
 					<br>
-					<input type="email" name="email" required>
+					<input id="email" type="email" name="email" required>
 					<br>
 					Password
 					<br>

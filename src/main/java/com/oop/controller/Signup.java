@@ -40,6 +40,7 @@ public class Signup extends HttpServlet {
 
         newUser.save();
         request.getSession().setAttribute("user", newUser);
+        request.getSession().setAttribute("role", "user");
         response.sendRedirect("explore");
     }
 }
