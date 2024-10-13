@@ -18,7 +18,10 @@ public class CustomerSupportAgent extends BaseUser {
         if (username == null) return null;
         try {
             Connection conn = DBConn.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User u INNER JOIN SupportAgent a ON u.Username = a.Username WHERE u.Username = ?");
+            PreparedStatement stmt =
+                    conn.prepareStatement(
+                            "SELECT * FROM User u INNER JOIN SupportAgent a ON u.Username ="
+                                + " a.Username WHERE u.Username = ?");
             stmt.setString(1, username);
             ResultSet res = stmt.executeQuery();
 
@@ -38,7 +41,8 @@ public class CustomerSupportAgent extends BaseUser {
     }
 
     @Override
-    public void onLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void onLogin(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
         request.getSession().setAttribute("user", this);
         request.getSession().setAttribute("role", "agent");
         response.sendRedirect("tickets");
