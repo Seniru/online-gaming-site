@@ -26,7 +26,8 @@ public class Game extends GameBase {
         try {
             Connection conn = DBConn.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game WHERE Gtitle = ?");
-            PreparedStatement catStmt = conn.prepareStatement("SELECT * FROM GameCategory WHERE Title = ?");
+            PreparedStatement catStmt =
+                    conn.prepareStatement("SELECT * FROM GameCategory WHERE Title = ?");
             catStmt.setString(1, title);
             stmt.setString(1, title);
             ResultSet cats = catStmt.executeQuery();
