@@ -21,7 +21,7 @@ public class CustomerSupportAgent extends BaseUser {
             PreparedStatement stmt =
                     conn.prepareStatement(
                             "SELECT * FROM User u INNER JOIN SupportAgent a ON u.Username ="
-                                + " a.Username WHERE u.Username = ?");
+                                    + " a.Username WHERE u.Username = ?");
             stmt.setString(1, username);
             ResultSet res = stmt.executeQuery();
 
